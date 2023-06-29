@@ -23,7 +23,6 @@ class AlbumsContainer extends Component {
   }
 
   render() {
-    console.log(this.state.albums);
     return (
       <div>
         <div className="taskContainer">
