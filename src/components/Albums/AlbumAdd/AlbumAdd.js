@@ -1,19 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-
 const AlbumsContainer = (props) => {
-  const [albums, setAlbums] = useState([]);
   const [artistId, setArtistId] = useState('');
-
-  const loadAlbums = () => {
-    axios
-      .get("/api/v1/albums")
-      .then((res) => {
-        setAlbums(res.data.data);
-      })
-      .catch((error) => console.log(error));
-  }
-
+  
   const onFormSubmit = async (e) => {
     e.preventDefault();
     const artistName = e.target[0].value;
@@ -39,17 +26,13 @@ const AlbumsContainer = (props) => {
           release_year: albumYear,
           genre: albumGenre,
           artist_id: artistId
-      }})
+        }})
       .then((res) => {
         console.log(res);
       })
       .catch((error) => console.log(error));
-  }
-
-  useEffect(() => {
-    loadAlbums();
-  }, [])
-
+    }
+  
   return (
     <div className="albumContainer">
       <form className="newAlbumArtist"
@@ -79,21 +62,6 @@ const AlbumsContainer = (props) => {
           className="btn btn-success"
         >Submit</button>
       </form>
-      <div className="wrapItems">
-        <ul className="listItems">
-          { albums.map ((album) => {
-            return (
-              <li className="item" album={album} key={album.id}>
-                <input className="itemCheckbox" type="checkbox" />
-                <label className="itemDisplay">{album.attributes.title}</label>
-                <span className="removeItemButton">x</span>
-              </li>
-            )
-          }) }
-        </ul>
-      </div>
     </div>
   );
 }
-
-export default AlbumsContainer;

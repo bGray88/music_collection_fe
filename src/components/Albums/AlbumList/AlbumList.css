@@ -1,0 +1,9 @@
+.album-list {
+  list-style: none;
+  padding: 0;
+}
+
+.album-list__fallback {
+  color: white;
+  text-align: center;
+}
