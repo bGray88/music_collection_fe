@@ -1,5 +1,5 @@
 import React from 'react'
-import AlbumsContainer from './AlbumsContainer'
+import AlbumsContainer from './AlbumList'
 
 describe('<AlbumsContainer />', () => {
   it('renders', () => {

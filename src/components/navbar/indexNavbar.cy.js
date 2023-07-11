@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './index'
+import Navbar from './Index'
 
 describe('<Navbar />', () => {
   it('renders', () => {

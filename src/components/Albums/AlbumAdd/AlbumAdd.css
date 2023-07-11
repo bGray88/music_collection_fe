@@ -1,0 +1,23 @@
+.albums input[type=text] {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 25px;
+  margin: 4px 2px;
+}
+
+.albums button.btn.btn-success {
+  background-color: #ccc;
+  border: none;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.albums button.btn.btn-success:hover {
+  background-color: #454545;
+}
