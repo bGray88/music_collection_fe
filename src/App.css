@@ -1,9 +1,8 @@
 .mainContainer {
-  width: 50rem;
+  width: 40rem;
   max-width: 95%;
   height: 500px;
   position: relative;
-  border-radius: 7px;
   margin: 0 auto;
 }
 
