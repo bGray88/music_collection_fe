@@ -1,11 +1,10 @@
 import React from 'react';
 
-import Card from '../../Card/Card/Card';
+import Card from '../../Window/Card/Card';
 
 import './AlbumItem.css'
 
 const AlbumItem = (props) => {
-  console.log(props)
   return (
     <li>
       <Card className='album-item'>
