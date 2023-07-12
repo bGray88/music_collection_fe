@@ -1,13 +1,13 @@
 const AlbumsContainer = (props) => {
   const [artistId, setArtistId] = useState('');
   
-  const onFormSubmit = async (e) => {
-    e.preventDefault();
-    const artistName = e.target[0].value;
-    const artistYear = e.target[1].value;
-    const albumTitle = e.target[2].value;
-    const albumYear  = e.target[3].value;
-    const albumGenre = e.target[4].value;
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    const artistName = event.target[0].value;
+    const artistYear = event.target[1].value;
+    const albumTitle = event.target[2].value;
+    const albumYear  = event.target[3].value;
+    const albumGenre = event.target[4].value;
     await axios
       .post("/api/v1/artists", {
         artist: {
@@ -15,8 +15,8 @@ const AlbumsContainer = (props) => {
           form_year: artistYear
       }})
       .then((res) => {
+        console.log(res.data);
         setArtistId(res.data.artist_id);
-        console.log(artistId);
       })
       .catch((error) => console.log(error));
     await axios
@@ -31,12 +31,12 @@ const AlbumsContainer = (props) => {
         console.log(res);
       })
       .catch((error) => console.log(error));
-    }
+  }
   
   return (
     <div className="albumContainer">
       <form className="newAlbumArtist"
-        onSubmit={onFormSubmit}
+        onSubmit={submitHandler}
       >
         <input type="text"
           className="albumArtist"

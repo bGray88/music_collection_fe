@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Albums.css'
 
-import Card from '../../Card/Card/Card'
+import Card from '../../Window/Card/Card'
 import AlbumList from '../AlbumList/AlbumList'
 
 const Albums = () => {

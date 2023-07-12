@@ -1,13 +1,9 @@
 .album-list {
   list-style: none;
   padding: 0;
-  border-radius: 7px;
-  border-color: red;
 }
 
 .album-list__fallback {
   color: white;
   text-align: center;
-  border-radius: 7px;
-  border-color: red;
 }

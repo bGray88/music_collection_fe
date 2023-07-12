@@ -1,4 +1,4 @@
-.mainContainer {
+.main-container {
   width: 40rem;
   max-width: 95%;
   height: 500px;
@@ -6,7 +6,7 @@
   margin: 0 auto;
 }
 
-.topHeading {
+.top-heading {
   color: rgb(48, 2, 2);
   font-family: "Times New Roman", Times, serif, sans-serif;
   padding: 7px;
