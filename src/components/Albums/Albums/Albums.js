@@ -22,11 +22,9 @@ const Albums = () => {
   }, [])
 
   return (
-    <div>
-      <Card className='albums'>
-        <AlbumList items={albums} />
-      </Card>
-    </div>
+    <Card className='albums'>
+      <AlbumList items={albums} />
+    </Card>
   );
 }
 
