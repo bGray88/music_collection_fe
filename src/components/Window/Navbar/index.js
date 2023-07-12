@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <Nav>
       <NavLogo to="/">
-        <img src="./logoRecord.png" height={80} />
+        <img src="./images/readme/logoRecord.png" height={80} />
       </NavLogo>
       <Bars />
       <NavMenu>

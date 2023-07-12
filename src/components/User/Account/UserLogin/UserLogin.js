@@ -17,7 +17,7 @@ async function loginUser(creds) {
       .catch((error) => console.log(error));
  }
 
-const UserLogin = (props) => {
+const UserLogin = ({ setToken }) => {
   const [email, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -38,7 +38,7 @@ const UserLogin = (props) => {
     }
 
     const token = await loginUser(userData);
-    props(token);
+    setToken(token);
     setUserEmail('');
     setPassword('');
   };
@@ -66,7 +66,7 @@ const UserLogin = (props) => {
 }
 
 UserLogin.propTypes = {
-  props: PropTypes.func.isRequired
+  setToken: PropTypes.func.isRequired
 };
 
 export default UserLogin 
