@@ -38,7 +38,7 @@ function App () {
         <div className="top-heading">
           <h1>Music Collection</h1>
         </div>
-
+        <Albums />
       </div>
     </div>
   );

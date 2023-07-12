@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+# README
+## Music Collection FE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Built using React.js, with a Rails BE, this intuitive and informative database is helpful to keep track of owned and wishlisted music albums.
 
-## Available Scripts
+![alt text](public/images/readme/readme-screenshot-01.png)
+![alt text](public/images/readme/readme-screenshot-02.png)
 
-In the project directory, you can run:
+<a name="readme-top"></a>
 
-### `npm start`
+<details>
+  <summary>Table of Contents</summary>
+  <ul list-style-position="inside">
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#learning-goals">Learning Goals</a></li>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#endpoints">Endpoints</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#contributing">Contributing</a>
+      <ul>
+        <li><a href="#developers">Developers</a></li>
+        <li><a href="#project-managers-instructors">Project Managers-Instructors</a></li>
+      </ul>
+    </li>
+  </ol>
+</details>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## About the Project
+  
+  ### Production Links
+  
+  * [Music Collection BE](https://github.com/bgray88/music_collection_be) <br>
+  * [Music Collection FE](https://github.com/bgray88/music_collection_fe) <br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  ### Learning Goals
 
-### `npm test`
+  * React.js implementation of hobby necessity
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  ### Built With
 
-### `npm run build`
+  [![React]][React-url] [![Rails]][Rails-url][![Postgres]][Postgres-url][![Postman]][Postman-url]
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ### Roadmap
+  <details>
+    <summary>Done</summary>
+    - [x] Design Schema<br>
+    - [x] Add Readme<br>
+    - [x] Setup Repo and Push to Github<br>
+    - [x] Readme: Outlines the learning goals<br>
+    - [x] Readme: Clone and Setup<br>
+  </details>
+  <details>
+    <summary>In Progress</summary>
+  </details>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+  ### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  * React "^18.2.0"
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  _Below are instructions for forking and cloning this repo_
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clone the repo
+  ```sh
+  git clone git@github.com:bGray88/music_collection_fe.git
+  ```
+  2. Install Modules
+  ```sh
+  npm install
+  ```
+  3. Download the Backend and setup per instructions
+  ```js
+  git clone git@github.com:bGray88/music_collection_be.git
+  ```
+  4. Run the servers
+  ```js
+  api: cd [INSTALL_DIRECTORY]/music_collection_be && rails server
+  web: yarn --cwd music_collection_fe start
+  ```
 
-## Learn More
+  <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Usage
+  
+  ### Pages - Welcome
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  ### Pages - Login
+  
+  ![alt text](public/images/readme/readme-screenshot-01.png)
+  
+  ### Pages - Dashboard
 
-### Code Splitting
+  ![alt text](public/images/readme/readme-screenshot-02.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  ### Pages - New Album
 
-### Analyzing the Bundle Size
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-### Making a Progressive Web App
+  If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+  Don't forget to give the project a star! Thanks again!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  1. Fork the Project
+  2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+  3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+  4. Push to the Branch (`git push origin feature/AmazingFeature`)
+  5. Open a Pull Request
 
-### Advanced Configuration
+  ### Developers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  <div align="center">
+    <img src="https://avatars.githubusercontent.com/u/111726505?v=4" alt="Profile" width="80" height="80">
+    <p align="center">
+      Brandon Gray<br>
+      <a href="https://github.com/bGray88">Github: bGray88</a><br>
+      <a href="https://www.linkedin.com/in/brandon-gray-67903689/">LinkedIn: Brandon Gray</a>
+    </p>
+  </div>
 
-### Deployment
+  <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  [React]: https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB
+  [React-url]: https://react.dev/
+  [Ruby]: https://img.shields.io/badge/-Ruby-CC342D?style=flat&logo=ruby&logoColor=white
+  [Ruby-url]: https://www.ruby-lang.org/en/
+  [Rails]: https://img.shields.io/badge/-Ruby%20on%20Rails-CC0000?style=flat&logo=rubyonrails&logoColor=white
+  [Rails-url]: https://rubyonrails.org
+  [Postgres]: https://img.shields.io/badge/-Postgres-4169E1?style=flat&logo=postgresql&logoColor=white
+  [Postgres-url]: https://www.postgresql.org/
+  [Postman]: https://img.shields.io/badge/-Postman-FF6C37?style=flat&logo=postman&logoColor=white
+  [Postman-url]: https://www.postman.com/
