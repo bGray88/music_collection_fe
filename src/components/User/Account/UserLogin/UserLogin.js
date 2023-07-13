@@ -4,9 +4,9 @@ import axios from "axios";
 
 import './UserLogin.css'
 
-async function loginUser(creds) {
+async function loginApi(creds) {
   return await axios
-      .post("/api/v1/users", {
+      .post("/api/v1/login", {
         user: {
           email: creds.email,
           password: creds.password
@@ -37,7 +37,7 @@ const UserLogin = ({ setToken }) => {
       date:  password
     }
 
-    const token = await loginUser(userData);
+    const token = await loginApi(userData);
     setToken(token);
     setUserEmail('');
     setPassword('');
@@ -69,4 +69,4 @@ UserLogin.propTypes = {
   setToken: PropTypes.func.isRequired
 };
 
-export default UserLogin 
+export default UserLogin;

@@ -9,11 +9,13 @@ import {
   NavBtnLink
 } from './NavbarElements';
 
+import logo from '../../../Assets/images/readme/logoRecord.png'
+
 const Navbar = () => {
   return (
     <Nav>
       <NavLogo to="/">
-        <img src="./images/readme/logoRecord.png" height={80} />
+        <img src={logo} height={80} />
       </NavLogo>
       <Bars />
       <NavMenu>
