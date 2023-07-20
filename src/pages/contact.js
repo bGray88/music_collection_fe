@@ -1,16 +1,14 @@
-const Contact = () => {
+import React from 'react';
+
+const Contact = () =>{
   return (
-      <div
-          style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '100vh'
-          }}
-      >
-        <h1>Contact Us</h1> 
+    <div>
+      <h3>Contact</h3>
+      <div>
+        Support: brandonjoe88@hotmail.com
       </div>
+    </div>
   );
-};
+}
 
 export default Contact;
