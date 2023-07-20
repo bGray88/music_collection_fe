@@ -1,31 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import "./App.css";
 
 import Navbar from '../Window/Navbar/Navbar';
-import Welcome from '../../Pages/Welcome/Welcome';
 import UserLogin from '../User/Account/UserLogin/UserLogin';
 import UserCreate from '../User/Account/UserCreate/UserCreate';
-import Dashboard from '../../Pages/Dashboard/Dashboard';
 import Preferences from '../User/Profile/Profile';
 import Albums from '../Albums/Albums/Albums';
+import Message from '../Window/Message/Message'
 
+import Welcome from '../../Pages/Welcome/Welcome';
 import About from '../../Pages/Support/About'
 import Contact from '../../Pages/Support/Contact'
+import Dashboard from '../../Pages/Dashboard/Dashboard';
 
 function App () {
   const [token, setToken] = useState('');
   const [loggedUser, setLoggedUser] = useState(7)
   const [user, setUserName] = useState('')
 
-  const selectGuestAction = (selected) => {
-    if(selected === "signin") {
-      return <UserLogin setToken={setToken} />
-    } else if(selected === "sign-up") {
-      return <UserCreate setToken={setToken} />
-    }
-  }
+  useEffect(() => {
+    // console.log(token);
+  })
 
   return (
     <div>
@@ -33,11 +30,11 @@ function App () {
         <Router>
           <Navbar user={user} loggedUser={loggedUser} />
           <Routes>
-            <Route path="/" exact element={<Welcome onSelectOption={selectGuestAction} />} />
+            <Route path="/" exact element={<Welcome />} />
             <Route path='/about' element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/sign-up" element={<UserLogin />} />
-            <Route path="/signin" element={<UserCreate />} />
+            <Route path="/sign-up" element={<UserCreate />} />
+            <Route path="/signin" element={<UserLogin setToken={setToken} />} />
           </Routes>
         </Router>
       </div>

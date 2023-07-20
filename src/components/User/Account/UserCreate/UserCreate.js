@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import {render} from 'react-dom';
 import axios from "axios";
+
+import Message from '../../../Window/Message/Message'
 
 import './UserCreate.css'
 
-async function createApi(creds) {
+async function UserCreateApi(creds) {
   return await axios
       .post("/api/v1/register", {
         user: {
@@ -15,17 +17,18 @@ async function createApi(creds) {
           password_confirmation: creds.password_confirmation
       }})
       .then((res) => {
-        console.log(res.data);;
+        return res.data;
       })
       .catch((error) => console.log(error));
  }
 
 const UserCreate = ({ setToken }) => {
   const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setUserEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [lastName, setLastName]   = useState('');
+  const [email, setUserEmail]     = useState('');
+  const [password, setPassword]   = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [createResult, setCreateResult]       = useState({});
 
   const firstNameChangeHandler = (event) => {
     setFirstName(event.target.value);
@@ -40,47 +43,55 @@ const UserCreate = ({ setToken }) => {
     setPassword(event.target.value);
   }
   const passwordConfirmChangeHandler = (event) => {
-    setPassword(event.target.value);
+    setPasswordConfirm(event.target.value);
   }
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    console.log(event);
+    setCreateResult({});
 
     const userData = {
-      email: email,
-      date:  password
+      first_name: firstName,
+      last_name:  lastName,
+      email:      email,
+      password:   password,
+      password_confirmation: passwordConfirm
     }
 
-    const token = await createApi(userData);
-    setToken(token);
+    setCreateResult(await UserCreateApi(userData, setCreateResult));
+    setFirstName('');
+    setLastName('');
     setUserEmail('');
     setPassword('');
+    setPasswordConfirm('');
   };
 
   return(
     <div className="user-create">
+      {createResult.success && (
+        <Message />
+      )}
       <h1>New User Form</h1>
       <form className='user-create_form' onSubmit={submitHandler}>
         <label>First Name</label>
         <div>
-          <input type="text" onChange={firstNameChangeHandler} />
+          <input type="text" value={firstName} onChange={firstNameChangeHandler} />
         </div>
         <label>Last Name</label>
         <div>
-          <input type="text" onChange={lastNameChangeHandler} />
+          <input type="text" value={lastName} onChange={lastNameChangeHandler} />
         </div>
         <label>Email</label>
         <div>
-          <input type="text" onChange={emailChangeHandler} />
+          <input type="text" value={email} onChange={emailChangeHandler} />
         </div>
         <label>Password</label>
         <div>
-          <input type="password" onChange={passwordChangeHandler}/>
+          <input type="password" value={password} onChange={passwordChangeHandler}/>
         </div>
         <label>Confirm Password</label>
         <div>
-          <input type="password" onChange={passwordConfirmChangeHandler}/>
+          <input type="password" value={passwordConfirm} onChange={passwordConfirmChangeHandler}/>
         </div>
         <div>
           <button type="submit"
@@ -91,9 +102,5 @@ const UserCreate = ({ setToken }) => {
     </div>
   )
 }
-
-UserCreate.propTypes = {
-  setToken: PropTypes.func.isRequired
-};
 
 export default UserCreate;

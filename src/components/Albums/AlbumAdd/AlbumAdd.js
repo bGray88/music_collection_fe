@@ -15,7 +15,6 @@ const AlbumsContainer = (props) => {
           form_year: artistYear
       }})
       .then((res) => {
-        console.log(res.data);
         setArtistId(res.data.artist_id);
       })
       .catch((error) => console.log(error));
@@ -28,7 +27,7 @@ const AlbumsContainer = (props) => {
           artist_id: artistId
         }})
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((error) => console.log(error));
   }

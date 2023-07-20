@@ -38,7 +38,7 @@ const Navbar = ({loggedUser, user}) => {
     <Nav>
       <NavLogoContainer>
         <NavLogo to="/">
-          <img src={logo} height={60} />
+          <img src={logo} height={40} />
         </NavLogo>
       </NavLogoContainer>
       <Bars />
