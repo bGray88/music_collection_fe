@@ -12,7 +12,7 @@ async function loginApi(creds) {
           password: creds.password
       }})
       .then((res) => {
-        console.log(res.data);;
+        // console.log(res.data);
       })
       .catch((error) => console.log(error));
  }
@@ -30,7 +30,6 @@ const UserLogin = ({ setToken }) => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    console.log(event);
 
     const userData = {
       email: email,
@@ -38,6 +37,7 @@ const UserLogin = ({ setToken }) => {
     }
 
     const token = await loginApi(userData);
+    // console.log(token);
     setToken(token);
     setUserEmail('');
     setPassword('');

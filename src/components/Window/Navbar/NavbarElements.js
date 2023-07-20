@@ -7,16 +7,16 @@ export const Nav = styled.nav`
   height: 60px;
   display: flex;
   justify-content: space-between;
-  padding: 0.2rem calc((100vw - 1000px) / 8);
+  align-items: center;
+  padding: 0.2rem calc((100vw - 1000px) / 4);
   z-index: 12;
 `;
 
 export const NavLogoContainer = styled.nav`
   background: #222222;
-  height: 50px;
+  height: 40px;
   display: flex;
   justify-content: flex-start;
-  padding: 0.2rem calc((100vw - 1000px) / 2);
   z-index: 12;
 `;
 
@@ -29,10 +29,10 @@ export const NavLogo = styled(Link)`
 
 export const NavBtnsContainer = styled.nav`
   background: #222222;
-  height: 50px;
+  height: 40px;
   display: flex;
   justify-content: flex-end;
-  padding: 0.2rem calc((100vw - 1000px) / 2);
+  align-items: center;
   z-index: 12;
 `;
 
