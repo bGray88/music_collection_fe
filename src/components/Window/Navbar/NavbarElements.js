@@ -4,9 +4,18 @@ import styled from 'styled-components';
 
 export const Nav = styled.nav`
   background: #222222;
-  height: 85px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
+  padding: 0.2rem calc((100vw - 1000px) / 8);
+  z-index: 12;
+`;
+
+export const NavLogoContainer = styled.nav`
+  background: #222222;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
   padding: 0.2rem calc((100vw - 1000px) / 2);
   z-index: 12;
 `;
@@ -16,7 +25,15 @@ export const NavLogo = styled(Link)`
   color: #fff;
   font-size: 2rem;
   text-decoration: none;
+`;
 
+export const NavBtnsContainer = styled.nav`
+  background: #222222;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.2rem calc((100vw - 1000px) / 2);
+  z-index: 12;
 `;
 
 export const NavLink = styled(Link)`
@@ -49,7 +66,7 @@ export const Bars = styled(FaBars)`
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
+  margin-right: 24px;
   @media screen and (max-width: 768px) {
     display: none;
   }

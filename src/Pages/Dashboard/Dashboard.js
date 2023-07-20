@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
-import AlbumList from '../../Albums/AlbumList/AlbumList'
-import Card from "../../Window/Card/Card";
+import AlbumList from '../../Components/Albums/AlbumList/AlbumList'
+import Card from "../../Components/Window/Card/Card";
 // import Loading from "../Loading/Loading";
 
 import './Dashboard.css'
