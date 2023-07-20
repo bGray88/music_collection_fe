@@ -6,7 +6,7 @@ import './AlbumList.css'
 
 const AlbumList = (props) => {
   if (props.items.length === 0) {
-    return <h2 className="albums-list__fallback">Found No Albums</h2>
+    return <h2 className="album-list__fallback">Found No Albums</h2>
   }
 
   return (

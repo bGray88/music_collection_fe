@@ -1,62 +1,50 @@
 import React, { useState } from "react";
-import "./App.css";
-import Navbar from '../Window/Nav';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from '../../Pages/Index';
-import About from '../../Pages/About'
-import Contact from '../../Pages/Contact';
-import SignUp from '../../Pages/Sign-Up'
-import SignIn from '../../Pages/SignIn'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Welcome from '../User/Welcome/Welcome'
-import UserLogin from '../User/Account/UserLogin/UserLogin'
-import UserCreate from '../User/Account/UserCreate/UserCreate'
+import "./App.css";
+
+import Navbar from '../Window/Navbar/Navbar';
+import Welcome from '../Window/Welcome/Welcome';
+import UserLogin from '../User/Account/UserLogin/UserLogin';
+import UserCreate from '../User/Account/UserCreate/UserCreate';
 import Dashboard from '../User/Dashboard/Dashboard';
-import Preferences from '../User/Preferences/Preferences';
-import Albums from '../Albums/Albums/Albums'
+import Preferences from '../User/Profile/Profile';
+import Albums from '../Albums/Albums/Albums';
+
+import About from '../../Pages/About'
+import Contact from '../../Pages/Contact'
 
 function App () {
   const [token, setToken] = useState('');
-  const [session, setSession] = useState('');
+  const [loggedUser, setLoggedUser] = useState(7)
+  const [user, setUserName] = useState('')
 
-  const loginChoice = (selection) => {
-    setSession(selection);
-  }
-
-  const loginUser = (selection) => {
-    if(selection == "signin") {
-      setSession('');
+  const selectGuestAction = (selected) => {
+    if(selected === "signin") {
       return <UserLogin setToken={setToken} />
-    } else if(selection == "signup") {
-      setSession('');
+    } else if(selected === "sign-up") {
       return <UserCreate setToken={setToken} />
     }
-  }
-
-  const validateUser = () => {
-    return <Welcome onLoginClick={loginChoice} />
   }
 
   return (
     <div>
       <div className="main-navbar">
         <Router>
-          <Navbar />
+          <Navbar user={user} loggedUser={loggedUser} />
           <Routes>
-            <Route path="/" element={Home} />
-            <Route path='/about' element={About} />
-            <Route path="/contact" element={Contact} />
-            <Route path="/sign-up" element={<UserCreate />} />
-            <Route path="/signin" element={<UserLogin />} />
+            <Route path="/" exact element={<Welcome onSelectOption={selectGuestAction} />} />
+            <Route path='/about' element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/sign-up" element={<UserLogin />} />
+            <Route path="/signin" element={<UserCreate />} />
           </Routes>
         </Router>
       </div>
       <div className="main-container">
         <div className="top-heading">
-          <h1>Music Collection</h1>
+          <h2>Music Collection</h2>
         </div>
-        {!token && validateUser()}
-        {session === ("signin" || "signup") && loginUser(session)}
       </div>
     </div>
   );

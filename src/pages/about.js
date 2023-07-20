@@ -1,16 +1,14 @@
-const About = () => {
+import React from 'react';
+
+const About = () =>{
   return (
-      <div
-          style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '100vh'
-          }}
-      >
-        <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem, totam.</h1>
+    <div>
+      <h3>About</h3>
+      <div>
+        Corporate Headquarters is located in Denver, Co.
       </div>
+    </div>
   );
-};
+}
 
 export default About;
