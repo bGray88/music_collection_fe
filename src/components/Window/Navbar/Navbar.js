@@ -7,10 +7,12 @@ import {
   Bars,
   NavMenu,
   NavBtn,
-  NavBtnLink
+  NavBtnLink,
+  NavLogoContainer,
+  NavBtnsContainer
 } from './NavbarElements';
 
-import logo from '../../../Assets/images/readme/logoRecord.png'
+import logo from '../../../Assets/images/navbar/logoRecordBanner.png'
 
 const Navbar = ({loggedUser, user}) => {
   const { pathname } = useLocation();
@@ -34,26 +36,30 @@ const Navbar = ({loggedUser, user}) => {
 
   return (
     <Nav>
-      <NavLogo to="/">
-        <img src={logo} height={80} />
-      </NavLogo>
+      <NavLogoContainer>
+        <NavLogo to="/">
+          <img src={logo} height={60} />
+        </NavLogo>
+      </NavLogoContainer>
       <Bars />
-      <NavMenu>
-        <NavLink to='/about'>
-          About
-        </NavLink>
-        <NavLink to='/contact'>
-          Contact
-        </NavLink>
-        <NavLink to='/sign-up'>
-          Sign Up
-        </NavLink>
-      </NavMenu>
-      <NavBtn>
-        <NavBtnLink to='/signin'>
-          Sign In
-        </NavBtnLink>
-      </NavBtn>
+      <NavBtnsContainer>
+        <NavMenu>
+          <NavLink to='/about'>
+            About
+          </NavLink>
+          <NavLink to='/contact'>
+            Contact
+          </NavLink>
+          <NavLink to='/sign-up'>
+            Sign Up
+          </NavLink>
+        </NavMenu>
+        <NavBtn>
+          <NavBtnLink to='/signin'>
+            Sign In
+          </NavBtnLink>
+        </NavBtn>
+      </NavBtnsContainer>
     </Nav>
   );
 };

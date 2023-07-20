@@ -4,15 +4,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import "./App.css";
 
 import Navbar from '../Window/Navbar/Navbar';
-import Welcome from '../Window/Welcome/Welcome';
+import Welcome from '../../Pages/Welcome/Welcome';
 import UserLogin from '../User/Account/UserLogin/UserLogin';
 import UserCreate from '../User/Account/UserCreate/UserCreate';
-import Dashboard from '../User/Dashboard/Dashboard';
+import Dashboard from '../../Pages/Dashboard/Dashboard';
 import Preferences from '../User/Profile/Profile';
 import Albums from '../Albums/Albums/Albums';
 
-import About from '../../Pages/About'
-import Contact from '../../Pages/Contact'
+import About from '../../Pages/Support/About'
+import Contact from '../../Pages/Support/Contact'
 
 function App () {
   const [token, setToken] = useState('');
@@ -42,9 +42,6 @@ function App () {
         </Router>
       </div>
       <div className="main-container">
-        <div className="top-heading">
-          <h2>Music Collection</h2>
-        </div>
       </div>
     </div>
   );
