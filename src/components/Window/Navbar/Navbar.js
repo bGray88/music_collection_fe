@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom'
+
 import {
   Nav,
   NavLogo,
@@ -11,6 +12,7 @@ import {
   NavLogoContainer,
   NavBtnsContainer
 } from './NavbarElements';
+import UserItemMenu from './UserItems/UserItemMenu/UserItemMenu'
 
 import logo from '../../../Assets/images/navbar/logoRecordBanner.png'
 
@@ -40,6 +42,7 @@ const Navbar = ({loggedUser, user}) => {
         <NavLogo to="/">
           <img src={logo} height={40} />
         </NavLogo>
+        <UserItemMenu />
       </NavLogoContainer>
       <Bars />
       <NavBtnsContainer>

@@ -17,7 +17,7 @@ import Dashboard from '../../Pages/Dashboard/Dashboard';
 
 function App () {
   const [token, setToken] = useState('');
-  const [loggedUser, setLoggedUser] = useState(7)
+  const [loggedUser, setLoggedUser] = useState('')
   const [user, setUserName] = useState('')
 
   useEffect(() => {
