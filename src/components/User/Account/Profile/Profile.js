@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './Profile.css'
 import { Redirect } from "react-router-dom";
-import Card from "../../Window/Card/Card";
+import Card from "../../../Window/Card/Card";
 // import Loading from "../Loading/Loading";
 
 const Profile = ({id, setCurrentUser, setUserName}) => {

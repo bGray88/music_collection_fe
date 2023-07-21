@@ -47,12 +47,6 @@ const Navbar = ({loggedUser, user}) => {
       <Bars />
       <NavBtnsContainer>
         <NavMenu>
-          <NavLink to='/about'>
-            About
-          </NavLink>
-          <NavLink to='/contact'>
-            Contact
-          </NavLink>
           <NavLink to='/sign-up'>
             Sign Up
           </NavLink>
