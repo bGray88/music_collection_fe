@@ -3,8 +3,8 @@
 
 Built using React.js, with a Rails BE, this intuitive and informative database is helpful to keep track of owned and wishlisted music albums.
 
-![alt text](public/images/readme/readme-screenshot-01.png)
-![alt text](public/images/readme/readme-screenshot-02.png)
+![alt text](src/Assets/images/readme/General/readme-screenshot-01.png)
+![alt text](src/Assets/images/readme/General/readme-screenshot-02.png)
 
 <a name="readme-top"></a>
 
@@ -106,13 +106,14 @@ Built using React.js, with a Rails BE, this intuitive and informative database i
   
   ### Pages - Welcome
 
+  ![alt text](src/Assets/images/readme/Welcome/readme-welcome-screenshot-01.png)
+
   ### Pages - Login
   
-  ![alt text](public/images/readme/readme-screenshot-01.png)
+  ![alt text](src/Assets/images/readme/Login/readme-login-screenshot-01.png)
+  ![alt text](src/Assets/images/readme/Login/readme-login-screenshot-02.png)
   
   ### Pages - Dashboard
-
-  ![alt text](public/images/readme/readme-screenshot-02.png)
 
   ### Pages - New Album
 
