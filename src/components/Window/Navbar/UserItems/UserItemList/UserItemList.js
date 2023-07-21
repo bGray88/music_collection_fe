@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useRef } from "react";
 import Dropdown from '../../../Dropdown/Dropdown';
 
 const UserItemList = ({ items }) => {
   const [dropdown, setDropdown] = useState(false);
+  let ref = useRef();
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (dropdown && ref.current && !ref.current.contains(event.target)) {
+        setDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    document.addEventListener("touchstart", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("touchstart", handler);
+    };
+  }, [dropdown]);
 
   return (
-    <li className="user-item-list">
+    <li className="user-item-list" ref={ref}>
       {items.submenu ? (
         <div>
           <button

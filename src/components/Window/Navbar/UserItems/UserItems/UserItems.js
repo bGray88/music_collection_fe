@@ -7,6 +7,23 @@ export const userItems = [
         url: '/',
       },
       {
+        title: 'Dashboard',
+        url: '/dashboard',
+      },
+      {
+        title: 'Account',
+        url: '/account',
+      }
+    ]
+  },
+  {
+    title: 'Support',
+    submenu: [
+      {
+        title: 'Home',
+        url: '/',
+      },
+      {
         title: 'About',
         url: '/about',
       },
@@ -15,5 +32,5 @@ export const userItems = [
         url: '/contact',
       }
     ]
-  }
+  },
 ];
