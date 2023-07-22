@@ -5,10 +5,6 @@ import Albums from '../../Components/Albums/Albums/Albums'
 import './Welcome.css'
 
 const Welcome = (props) => {
-  const buttonHandler = (event) => {
-    props.onSelectOption(event.target.value);
-  }
-
   return (
     <div className='welcome-container'>
       <div className='top-heading'>

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import {render} from 'react-dom';
 import axios from "axios";
 
 import Message from '../../../Window/Message/Message'
 
 import './UserCreate.css'
 
-async function UserCreateApi(creds) {
+const UserCreateApi = async (creds) => {
   return await axios
       .post("/api/v1/register", {
         user: {
@@ -58,7 +57,7 @@ const UserCreate = ({ setToken }) => {
       password_confirmation: passwordConfirm
     }
 
-    setCreateResult(await UserCreateApi(userData, setCreateResult));
+    setCreateResult(await UserCreateApi(userData));
     setFirstName('');
     setLastName('');
     setUserEmail('');

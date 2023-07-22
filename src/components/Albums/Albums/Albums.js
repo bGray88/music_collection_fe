@@ -8,8 +8,8 @@ import AlbumList from '../AlbumList/AlbumList'
 const Albums = () => {
   const [albums, setAlbums] = useState([]);
 
-  const loadAlbums = () => {
-    axios
+  const loadAlbums = async () => {
+    await axios
       .get("/api/v1/albums")
       .then((res) => {
         setAlbums(res.data.data);

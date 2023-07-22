@@ -16,45 +16,38 @@ import UserItemMenu from './UserItems/UserItemMenu/UserItemMenu'
 
 import logo from '../../../Assets/images/navbar/logoRecordBanner.png'
 
-const Navbar = ({loggedUser, user}) => {
-  const { pathname } = useLocation();
-  const [currentUser, setUser] = useState('');
-  const [isActive, setIsActive] = useState(false);
+const Navbar = ({ loggedUser, user }) => {
+  const [currentNavUser, setCurrentUser] = useState('');
+  const [currentNavSignUp, setCurrentSignUp] = useState('');
+  const [currentNavSignIn, setCurrentSignIn] = useState('');
 
-  const toggleActiveClass = () => {
-    setIsActive(!isActive);
-  };
-
-
-  const removeActive = () => {
-    setIsActive(false)
-  }
-  
   useEffect(() => {
-    if (loggedUser) {
-      setUser(user.name)
+    if (!loggedUser) {
+      setCurrentUser(<UserItemMenu loggedUser={loggedUser} user={user} />);
+      setCurrentSignUp(<NavLink to='/sign-up'>Sign Up</NavLink>);
+      setCurrentSignIn(<NavBtnLink to='/signin'>Sign In</NavBtnLink>)
+    } else {
+      setCurrentUser(<UserItemMenu loggedUser={loggedUser} user={user} />);
+      setCurrentSignUp('');
+      setCurrentSignIn(<NavBtnLink to='/signout'>Sign Out</NavBtnLink>)
     }
-  }, [loggedUser])
+  }, [loggedUser, user])
 
   return (
     <Nav>
       <NavLogoContainer>
         <NavLogo to="/">
-          <img src={logo} height={40} />
+          <img src={logo} alt={logo} height={40} />
         </NavLogo>
-        <UserItemMenu />
+        {currentNavUser}
       </NavLogoContainer>
       <Bars />
       <NavBtnsContainer>
         <NavMenu>
-          <NavLink to='/sign-up'>
-            Sign Up
-          </NavLink>
+          {currentNavSignUp}
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to='/signin'>
-            Sign In
-          </NavBtnLink>
+          {currentNavSignIn}
         </NavBtn>
       </NavBtnsContainer>
     </Nav>

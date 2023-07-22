@@ -6,6 +6,7 @@ import "./App.css";
 import Navbar from '../Window/Navbar/Navbar';
 import UserLogin from '../User/Account/UserLogin/UserLogin';
 import UserCreate from '../User/Account/UserCreate/UserCreate';
+import UserLogout from '../User/Account/UserLogout/UserLogout';
 import Preferences from '../User/Account/Profile/Profile';
 import Albums from '../Albums/Albums/Albums';
 import Message from '../Window/Message/Message'
@@ -17,25 +18,26 @@ import Dashboard from '../../Pages/Dashboard/Dashboard';
 import Account from '../../Pages/Account/Account';
 
 function App () {
-  const [token, setToken] = useState('');
   const [loggedUser, setLoggedUser] = useState('')
   const [user, setUserName] = useState('')
 
   useEffect(() => {
-    // console.log(token);
+     console.log(loggedUser);
+     console.log(user);
   })
 
   return (
     <div>
       <div className="main-navbar">
         <Router>
-          <Navbar user={user} loggedUser={loggedUser} />
+          <Navbar loggedUser={loggedUser} user={user} />
           <Routes>
             <Route path="/" exact element={<Welcome />} />
             <Route path='/about' element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sign-up" element={<UserCreate />} />
-            <Route path="/signin" element={<UserLogin setToken={setToken} />} />
+            <Route path="/signin" element={<UserLogin setLoggedUser={setLoggedUser} setUserName={setUserName} />} />
+            <Route path="/signout" element={<UserLogout setLoggedUser={setLoggedUser} setUserName={setUserName} />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path="/account" element={<Account />} />
           </Routes>
