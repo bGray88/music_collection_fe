@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Dropdown from '../../../Dropdown/Dropdown';
 
-const UserItemList = ({ items }) => {
+const UserItemList = ({ items, user }) => {
   const [dropdown, setDropdown] = useState(false);
   let ref = useRef();
 
@@ -19,6 +19,14 @@ const UserItemList = ({ items }) => {
     };
   }, [dropdown]);
 
+  const showLoggedUser = (name) => {
+    if(name === "User" && user !== '') {
+      return user
+    } else {
+      return name
+    }
+  }
+
   return (
     <li className="user-item-list" ref={ref}>
       {items.submenu ? (
@@ -29,7 +37,7 @@ const UserItemList = ({ items }) => {
             aria-expanded={dropdown ? "true" : "false"}
             onClick={() => setDropdown((prev) => !prev)}
           >
-            {items.title}{' '}
+            {showLoggedUser(items.title)}{' '}
           </button>
           <Dropdown submenus={items.submenu} dropdown={dropdown} />
         </div>

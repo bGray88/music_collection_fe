@@ -1,25 +1,16 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'
+
+import { UserLoginApi } from '../../../API/UserLogin';
+import Authenticate from '../Auth/Authenticate';
 
 import './UserLogin.css'
 
-async function loginApi(creds) {
-  return await axios
-      .post("/api/v1/login", {
-        user: {
-          email: creds.email,
-          password: creds.password
-      }})
-      .then((res) => {
-        // console.log(res.data);
-      })
-      .catch((error) => console.log(error));
- }
-
-const UserLogin = ({ setToken }) => {
+const UserLogin = ({ setLoggedUser, setUserName }) => {
   const [email, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const emailChangeHandler = (event) => {
     setUserEmail(event.target.value);
@@ -31,16 +22,21 @@ const UserLogin = ({ setToken }) => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    const userData = {
-      email: email,
-      date:  password
+    const loginData = {
+      email:    email,
+      password: password
     }
 
-    const token = await loginApi(userData);
-    // console.log(token);
-    setToken(token);
+    const userData = await UserLoginApi(loginData);
     setUserEmail('');
     setPassword('');
+    const token = {
+      access_token: userData.headers["x-auth-token"],
+      expires: new Date(userData.headers["x-auth-expire"])
+    }
+    Authenticate(token, navigate);
+    setLoggedUser(userData.data.user.data[0]);
+    setUserName(`${userData.data.user.data[0].attributes.first_name} ${userData.data.user.data[0].attributes.last_name}`);
   };
 
   return(
@@ -49,11 +45,11 @@ const UserLogin = ({ setToken }) => {
       <form className='user-login_form' onSubmit={submitHandler}>
         <label>Email</label>
         <div>
-          <input type="text" onChange={emailChangeHandler} />
+          <input type="text" value={email} onChange={emailChangeHandler} />
         </div>
         <label>Password</label>
         <div>
-          <input type="password" onChange={passwordChangeHandler}/>
+          <input type="password" value={password} onChange={passwordChangeHandler}/>
         </div>
         <div>
         <button type="submit"
@@ -64,9 +60,5 @@ const UserLogin = ({ setToken }) => {
     </div>
   )
 }
-
-UserLogin.propTypes = {
-  setToken: PropTypes.func.isRequired
-};
 
 export default UserLogin;

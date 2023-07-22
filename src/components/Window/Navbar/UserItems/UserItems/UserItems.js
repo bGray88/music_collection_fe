@@ -1,22 +1,5 @@
 export const userItems = [
   {
-    title: 'User',
-    submenu: [
-      {
-        title: 'Home',
-        url: '/',
-      },
-      {
-        title: 'Dashboard',
-        url: '/dashboard',
-      },
-      {
-        title: 'Account',
-        url: '/account',
-      }
-    ]
-  },
-  {
     title: 'Support',
     submenu: [
       {
@@ -30,6 +13,23 @@ export const userItems = [
       {
         title: 'Contact',
         url: '/contact',
+      }
+    ]
+  },
+  {
+    title: 'User',
+    submenu: [
+      {
+        title: 'Home',
+        url: '/',
+      },
+      {
+        title: 'Dashboard',
+        url: '/dashboard',
+      },
+      {
+        title: 'Account',
+        url: '/account',
       }
     ]
   },

@@ -14,8 +14,8 @@ const Dashboard = ({id, setCurrentUser, setUserName}) => {
     const [userFilter, setUserFilter] = useState('')
     const [user_albums, setUserAlbums] = useState([]);
 
-    const loadAlbums = () => {
-      axios
+    const loadAlbums = async () => {
+      await axios
         .get("/api/v1/albums")
         // get user albums based on ID
         .then((res) => {

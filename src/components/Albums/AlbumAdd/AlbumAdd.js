@@ -27,7 +27,7 @@ const AlbumsContainer = (props) => {
           artist_id: artistId
         }})
       .then((res) => {
-        // console.log(res);
+        console.log(res);
       })
       .catch((error) => console.log(error));
   }
