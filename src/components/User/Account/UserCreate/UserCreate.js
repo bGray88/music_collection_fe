@@ -21,7 +21,7 @@ const UserCreateApi = async (creds) => {
       .catch((error) => console.log(error));
  }
 
-const UserCreate = ({ setToken }) => {
+const UserCreate = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName]   = useState('');
   const [email, setUserEmail]     = useState('');
@@ -68,7 +68,7 @@ const UserCreate = ({ setToken }) => {
   return(
     <div className="user-create">
       {createResult.success && (
-        <Message />
+        <Message message={"User Created Successfully"} />
       )}
       <h1>New User Form</h1>
       <form className='user-create_form' onSubmit={submitHandler}>

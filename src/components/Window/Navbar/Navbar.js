@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 import {
   Nav,
@@ -15,23 +15,24 @@ import {
 import UserItemMenu from './UserItems/UserItemMenu/UserItemMenu'
 
 import logo from '../../../Assets/images/navbar/logoRecordBanner.png'
+import { getAccessToken, isAuthenticated } from "../../User/Account/Auth/IsAuthenticated";
 
-const Navbar = ({ loggedUser, user }) => {
+const Navbar = () => {
   const [currentNavUser, setCurrentUser] = useState('');
   const [currentNavSignUp, setCurrentSignUp] = useState('');
   const [currentNavSignIn, setCurrentSignIn] = useState('');
 
   useEffect(() => {
-    if (!loggedUser) {
-      setCurrentUser(<UserItemMenu loggedUser={loggedUser} user={user} />);
+    if(!isAuthenticated()) {
+      setCurrentUser(<UserItemMenu />);
       setCurrentSignUp(<NavLink to='/sign-up'>Sign Up</NavLink>);
       setCurrentSignIn(<NavBtnLink to='/signin'>Sign In</NavBtnLink>)
     } else {
-      setCurrentUser(<UserItemMenu loggedUser={loggedUser} user={user} />);
+      setCurrentUser(<UserItemMenu />);
       setCurrentSignUp('');
       setCurrentSignIn(<NavBtnLink to='/signout'>Sign Out</NavBtnLink>)
     }
-  }, [loggedUser, user])
+  }, [isAuthenticated()])
 
   return (
     <Nav>

@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
+import Cookies from 'js-cookie'
 
+import Message from "../../Components/Window/Message/Message";
 import AlbumList from '../../Components/Albums/AlbumList/AlbumList'
 import Card from "../../Components/Window/Card/Card";
-// import Loading from "../Loading/Loading";
 
 import './Dashboard.css'
 
 const Dashboard = ({id, setCurrentUser, setUserName}) => {
-    const [userListings, setListings] = useState([])
-    const [user, setUser] = useState({})
-    const [userFilter, setUserFilter] = useState('')
     const [user_albums, setUserAlbums] = useState([]);
+    const [loginMessage, setLoginMessage] = useState('');
 
     const loadAlbums = async () => {
       await axios
@@ -26,12 +24,16 @@ const Dashboard = ({id, setCurrentUser, setUserName}) => {
   
     useEffect(() => {
       loadAlbums();
+      setLoginMessage(<Message message={`Welcome ${Cookies.get("user_name")}`} />);
     }, [])
 
     return (
-      <Card className='albums'>
-        <AlbumList items={user_albums} />
-      </Card>
+      <div className="dashboard-main">
+        {loginMessage}
+        <Card className='albums'>
+          <AlbumList items={user_albums} />
+        </Card>
+      </div>
     );
 }
 
