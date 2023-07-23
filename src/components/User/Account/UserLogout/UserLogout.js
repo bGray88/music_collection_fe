@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import Cookies from 'js-cookie'
 
 import { getAccessToken } from '../Auth/IsAuthenticated';
 
@@ -20,17 +21,18 @@ const deleteRequest = async () => {
     .catch((error) => console.log(error));
 }
 
-const UserLogout = ({ setLoggedUser, setUserName }) => {
+const UserLogout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     deleteRequest();
 
-    setLoggedUser('');
-    setUserName('');
+    Cookies.remove("access_token");
+    Cookies.remove('user');
+    Cookies.remove('user_name');
 
     navigate('/');
-  }, [])
+  })
 
   return (
     <div></div>

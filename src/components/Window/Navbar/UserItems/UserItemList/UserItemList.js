@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
+import Cookies from 'js-cookie'
+
 import Dropdown from '../../../Dropdown/Dropdown';
 
-const UserItemList = ({ items, user }) => {
+const UserItemList = ({ items }) => {
   const [dropdown, setDropdown] = useState(false);
   let ref = useRef();
 
@@ -20,8 +22,8 @@ const UserItemList = ({ items, user }) => {
   }, [dropdown]);
 
   const showLoggedUser = (name) => {
-    if(name === "User" && user !== '') {
-      return user
+    if(name === "User" && Object.keys(Cookies.get("user_name")).length !== 0) {
+      return Cookies.get("user_name")
     } else {
       return name
     }

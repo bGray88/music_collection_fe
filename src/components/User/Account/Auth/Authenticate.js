@@ -1,14 +1,14 @@
 import Cookies from 'js-cookie'
 
-const Authenticate = async (token, navigate) => {
-  try {
+export const Authenticate = (token) => {
+  let authResult = {};
+
+  if(Object.keys(token).length === 0) {
+    authResult = { "error": "Invalid Token" };
+  } else {
     Cookies.set('access_token', token.access_token, { expires: token.expires })
-
-    return true
-  } catch (error) {
-    navigate('/');
-    return false
+    authResult = { "success": "Creds Verified" };
   }
-}
 
-export default Authenticate;
+  return authResult
+}
