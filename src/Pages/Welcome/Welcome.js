@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Albums from '../../Components/Albums/Albums/Albums'
+import Albums from '../../components/albums/albums/albums'
 
-import './Welcome.css'
+import './welcome.css'
 
 const Welcome = (props) => {
   return (

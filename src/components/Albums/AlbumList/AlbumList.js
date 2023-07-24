@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import AlbumItem from "../AlbumItem/AlbumItem";
+import AlbumItem from "../albumItem/albumItem";
 
-import './AlbumList.css'
+import './albumList.css'
 
 const AlbumList = (props) => {
   if (props.items.length === 0) {

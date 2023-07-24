@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import './Albums.css'
+import './albums.css'
 
-import Card from '../../Window/Card/Card'
-import AlbumList from '../AlbumList/AlbumList'
+import Card from '../../ui/card/card'
+import { albumIndexApi } from "../../../api/albums/albumsApi";
+import AlbumList from '../albumList/albumList'
 
 const Albums = () => {
   const [albums, setAlbums] = useState([]);
 
-  const loadAlbums = async () => {
-    await axios
-      .get("/api/v1/albums")
-      .then((res) => {
-        setAlbums(res.data.data);
-      })
-      .catch((error) => console.log(error));
-  }
-
   useEffect(() => {
-    loadAlbums();
+    albumIndexApi(setAlbums);
   }, [])
 
   return (
