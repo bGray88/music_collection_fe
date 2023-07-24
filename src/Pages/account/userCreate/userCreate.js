@@ -1,25 +1,9 @@
 import React, { useState } from 'react';
-import axios from "axios";
 
-import Message from '../../../Window/Message/Message'
+import { userCreateApi } from '../../../api/users/usersApi';
+import Message from '../../../components/ui/message/message';
 
-import './UserCreate.css'
-
-const UserCreateApi = async (creds) => {
-  return await axios
-      .post("/api/v1/register", {
-        user: {
-          first_name: creds.first_name,
-          last_name: creds.last_name,
-          email: creds.email,
-          password: creds.password,
-          password_confirmation: creds.password_confirmation
-      }})
-      .then((res) => {
-        return res.data;
-      })
-      .catch((error) => console.log(error));
- }
+import './userCreate.css'
 
 const UserCreate = () => {
   const [firstName, setFirstName] = useState('');
@@ -45,7 +29,7 @@ const UserCreate = () => {
     setPasswordConfirm(event.target.value);
   }
 
-  const submitHandler = async (event) => {
+  const submitHandler = (event) => {
     event.preventDefault();
     setCreateResult({});
 
@@ -57,7 +41,7 @@ const UserCreate = () => {
       password_confirmation: passwordConfirm
     }
 
-    setCreateResult(await UserCreateApi(userData));
+    setCreateResult(userCreateApi(userData, setCreateResult));
     setFirstName('');
     setLastName('');
     setUserEmail('');

@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'
 
-import Message from '../../../Window/Message/Message'
-import { UserLoginApi } from '../../../API/UserLogin';
-import { Authenticate } from '../Auth/Authenticate';
+import Message from '../../../components/ui/message/message';
+import { userLoginApi } from '../../../api/users/usersApi';
+import { Authenticate } from '../../../auth/authenticate';
 
-import './UserLogin.css'
+import './userLogin.css'
 
-const UserLogin = () => {
+const UserLogin = (props) => {
   const [email, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
   const [token, setToken] = useState({});
+  const [loginData, setLoginData] = useState({});
+  const [userData, setUserData] = useState({});
+  const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const emailChangeHandler = (event) => {
@@ -22,15 +25,16 @@ const UserLogin = () => {
     setPassword(event.target.value);
   }
 
-  const submitHandler = async (event) => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
-    const loginData = {
+    setLoginData({
       email:    email,
       password: password
-    }
+    })
 
-    const userData = (await UserLoginApi(loginData));
+    userLoginApi(loginData, setUserData, setLoading);
+
     if(userData?.headers) {
       setToken({
         access_token: userData.headers["x-auth-token"],
@@ -43,6 +47,7 @@ const UserLogin = () => {
     setPassword('');
 
     if(auth?.success) {
+      props.setLoggedUser(true)
       Cookies.set("user", userData.data.user.data[0]);
       Cookies.set("user_name", `${userData.data.user.data[0].attributes.first_name} ${userData.data.user.data[0].attributes.last_name}`);
       navigate('/dashboard');

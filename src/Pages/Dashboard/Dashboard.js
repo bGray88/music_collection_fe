@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from 'js-cookie'
 
-import Message from "../../Components/Window/Message/Message";
-import AlbumList from '../../Components/Albums/AlbumList/AlbumList'
-import Card from "../../Components/Window/Card/Card";
+import Message from "../../components/ui/message/message";
+import AlbumList from '../../components/albums/albumList/albumList'
+import Card from "../../components/ui/card/card";
 
-import './Dashboard.css'
+import './dashboard.css'
 
 const Dashboard = ({id, setCurrentUser, setUserName}) => {
     const [user_albums, setUserAlbums] = useState([]);
     const [loginMessage, setLoginMessage] = useState('');
 
-    const loadAlbums = async () => {
-      await axios
+    const loadAlbums = () => {
+      axios
         .get("/api/v1/albums")
         // get user albums based on ID
         .then((res) => {

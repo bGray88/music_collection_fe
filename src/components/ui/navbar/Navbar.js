@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Cookies from 'js-cookie'
 
 import {
   Nav,
@@ -12,27 +11,32 @@ import {
   NavLogoContainer,
   NavBtnsContainer
 } from './NavbarElements';
-import UserItemMenu from './UserItems/UserItemMenu/UserItemMenu'
+import UserItemMenu from './dropdownItems/dropdownItemMenu/dropdownItemMenu'
 
-import logo from '../../../Assets/images/navbar/logoRecordBanner.png'
-import { getAccessToken, isAuthenticated } from "../../User/Account/Auth/IsAuthenticated";
+import logo from '../../../assets/images/navbar/logoRecordBanner.png'
+import { getCurrentUser, isAuthenticated } from "../../../auth/isAuthenticated";
 
 const Navbar = () => {
   const [currentNavUser, setCurrentUser] = useState('');
   const [currentNavSignUp, setCurrentSignUp] = useState('');
   const [currentNavSignIn, setCurrentSignIn] = useState('');
+  const [loggedUser, setLoggedUser] = useState(getCurrentUser());
 
   useEffect(() => {
-    if(!isAuthenticated()) {
+    setLoggedUser(getCurrentUser);
+  }, [isAuthenticated()])
+
+  useEffect(() => {
+    if (!loggedUser) {
       setCurrentUser(<UserItemMenu />);
       setCurrentSignUp(<NavLink to='/sign-up'>Sign Up</NavLink>);
-      setCurrentSignIn(<NavBtnLink to='/signin'>Sign In</NavBtnLink>)
+      setCurrentSignIn(<NavBtnLink to='/signin' >Sign In</NavBtnLink>)
     } else {
       setCurrentUser(<UserItemMenu />);
       setCurrentSignUp('');
-      setCurrentSignIn(<NavBtnLink to='/signout'>Sign Out</NavBtnLink>)
+      setCurrentSignIn(<NavBtnLink to='/signout' >Sign Out</NavBtnLink>)
     }
-  }, [isAuthenticated()])
+  }, [loggedUser])
 
   return (
     <Nav>

@@ -1,14 +1,14 @@
 const AlbumsContainer = (props) => {
   const [artistId, setArtistId] = useState('');
   
-  const submitHandler = async (event) => {
+  const submitHandler = (event) => {
     event.preventDefault();
     const artistName = event.target[0].value;
     const artistYear = event.target[1].value;
     const albumTitle = event.target[2].value;
     const albumYear  = event.target[3].value;
     const albumGenre = event.target[4].value;
-    await axios
+    axios
       .post("/api/v1/artists", {
         artist: {
           name: artistName,
@@ -18,7 +18,7 @@ const AlbumsContainer = (props) => {
         setArtistId(res.data.artist_id);
       })
       .catch((error) => console.log(error));
-    await axios
+    axios
       .post("/api/v1/albums", {
         album: {
           title: albumTitle,

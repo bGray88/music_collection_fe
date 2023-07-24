@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import Cookies from 'js-cookie'
 
-import Dropdown from '../../../Dropdown/Dropdown';
+import Dropdown from '../../../dropdown/dropdown';
+import { getCurrentUser, isAuthenticated } from "../../../../../auth/isAuthenticated";
 
-const UserItemList = ({ items }) => {
+const DropdownItemList = ({ items }) => {
   const [dropdown, setDropdown] = useState(false);
+  const [loggedUser, setLoggedUser] = useState(getCurrentUser());
   let ref = useRef();
 
   useEffect(() => {
@@ -21,9 +22,13 @@ const UserItemList = ({ items }) => {
     };
   }, [dropdown]);
 
+  useEffect(() => {
+    setLoggedUser(getCurrentUser);
+  }, [isAuthenticated()])
+
   const showLoggedUser = (name) => {
-    if(name === "User" && Object.keys(Cookies.get("user_name")).length !== 0) {
-      return Cookies.get("user_name")
+    if(name === "User" && Object.keys(loggedUser).length !== 0) {
+      return ''
     } else {
       return name
     }
@@ -50,4 +55,4 @@ const UserItemList = ({ items }) => {
   );
 };
 
-export default UserItemList;
+export default DropdownItemList;
