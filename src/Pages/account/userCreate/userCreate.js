@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { userCreateApi } from '../../../api/users/usersApi';
 import Message from '../../../components/ui/message/message';
+import Loading from '../../../components/ui/loading/loading';
 
 import './userCreate.css'
 
@@ -10,8 +12,12 @@ const UserCreate = () => {
   const [lastName, setLastName]   = useState('');
   const [email, setUserEmail]     = useState('');
   const [password, setPassword]   = useState('');
+  const [isLoading, setLoading] = useState(false);
+  const [createMessage, setCreateMessage] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [createResult, setCreateResult]       = useState({});
+
+  const navigate = useNavigate();
 
   const firstNameChangeHandler = (event) => {
     setFirstName(event.target.value);
@@ -41,7 +47,7 @@ const UserCreate = () => {
       password_confirmation: passwordConfirm
     }
 
-    setCreateResult(userCreateApi(userData, setCreateResult));
+    setCreateResult(userCreateApi(userData, setCreateResult, setLoading));
     setFirstName('');
     setLastName('');
     setUserEmail('');
@@ -49,41 +55,68 @@ const UserCreate = () => {
     setPasswordConfirm('');
   };
 
-  return(
-    <div className="user-create">
-      {createResult.success && (
-        <Message message={"User Created Successfully"} />
-      )}
-      <h1>New User Form</h1>
-      <form className='user-create_form' onSubmit={submitHandler}>
-        <label>First Name</label>
-        <div>
-          <input type="text" value={firstName} onChange={firstNameChangeHandler} />
-        </div>
-        <label>Last Name</label>
-        <div>
-          <input type="text" value={lastName} onChange={lastNameChangeHandler} />
-        </div>
-        <label>Email</label>
-        <div>
-          <input type="text" value={email} onChange={emailChangeHandler} />
-        </div>
-        <label>Password</label>
-        <div>
-          <input type="password" value={password} onChange={passwordChangeHandler}/>
-        </div>
-        <label>Confirm Password</label>
-        <div>
-          <input type="password" value={passwordConfirm} onChange={passwordConfirmChangeHandler}/>
-        </div>
-        <div>
-          <button type="submit"
-            className="btn btn-success"
-          >Submit</button>
-        </div>
-      </form>
-    </div>
-  )
+  useEffect(() => {
+    if (createResult !== {} && createResult.hasOwnProperty('success')) {
+      setCreateMessage(createResult.success);
+      setLoading(true);
+      setTimeout(() => {
+        navigate('/signin');
+        setLoading(false);
+      }, 3000);
+    } else if (createResult !== {} && createResult.hasOwnProperty('errors')) {
+      setCreateMessage(createResult.errors);
+      setLoading(true);
+      setTimeout(() => {
+        navigate('/sign-up');
+        setLoading(false);
+      }, 3000);
+    }
+  }, [createResult, navigate])
+
+  if (isLoading) {
+    return (
+      <div className='create-loading'>
+        <h2>Processing...</h2>
+        <Loading />
+      </div>
+    )
+  } else {
+    return(
+      <div className="user-create">
+        {createResult && (
+          <Message message={createMessage} />
+        )}
+        <h1>New User Form</h1>
+        <form className='user-create_form' onSubmit={submitHandler}>
+          <label>First Name</label>
+          <div>
+            <input type="text" value={firstName} onChange={firstNameChangeHandler} />
+          </div>
+          <label>Last Name</label>
+          <div>
+            <input type="text" value={lastName} onChange={lastNameChangeHandler} />
+          </div>
+          <label>Email</label>
+          <div>
+            <input type="text" value={email} onChange={emailChangeHandler} />
+          </div>
+          <label>Password</label>
+          <div>
+            <input type="password" value={password} onChange={passwordChangeHandler}/>
+          </div>
+          <label>Confirm Password</label>
+          <div>
+            <input type="password" value={passwordConfirm} onChange={passwordConfirmChangeHandler}/>
+          </div>
+          <div>
+            <button type="submit"
+              className="btn btn-success"
+            >Submit</button>
+          </div>
+        </form>
+      </div>
+    )
+  }
 }
 
 export default UserCreate;
