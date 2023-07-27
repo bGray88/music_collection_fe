@@ -9,7 +9,7 @@ const Albums = () => {
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
-    albumIndexApi(setAlbums);
+    albumIndexApi(setAlbums, "Led Zeppilin");
   }, [])
 
   return (

@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./app.css";
 
 import Switch from '../../routes/switch'
+import { getCurrentUser } from "../../auth/isAuthenticated";
 
-function App () {
+function App() {
+  const [loggedUser, setLoggedUser] = useState(getCurrentUser());
+
+  useEffect(() => {
+    setLoggedUser(getCurrentUser());
+  }, [loggedUser]);
+
   return (
-    <div>
-      <div className="main-navbar">
-        <Switch />
-      </div>
-      <div className="main-container">
-      </div>
+    <div className="app">
+      <Switch loggedUser={loggedUser} setLoggedUser={setLoggedUser}/>
     </div>
   );
 }

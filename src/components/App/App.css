@@ -1,7 +1,23 @@
-.main-container {
-  width: 40rem;
-  max-width: 95%;
-  height: 500px;
-  position: relative;
-  margin: 0 auto;
+.app {
+  text-align: center;
+}
+
+.router-outer {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  display: flex;
+}
+
+.top-suggestions-container {
+  padding: auto;
+  margin: 20px 20px 20px 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .app {
+    width:100%
+  }
 }

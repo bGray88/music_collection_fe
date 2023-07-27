@@ -4,11 +4,12 @@ import Albums from '../../components/albums/albums/albums'
 
 import './welcome.css'
 
-const Welcome = (props) => {
+const Welcome = () => {
   return (
     <div className='welcome-container'>
       <div className='top-heading'>
-        <h2>Recent Entries</h2>
+        <h2>Welcome to Your Music!</h2>
+        <h2>Recent Additions</h2>
       </div>
       <div className='recent-album_list'>
         <Albums />

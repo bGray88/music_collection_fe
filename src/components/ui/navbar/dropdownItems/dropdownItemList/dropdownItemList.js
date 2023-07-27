@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 
 import Dropdown from '../../../dropdown/dropdown';
-import { getCurrentUser, isAuthenticated } from "../../../../../auth/isAuthenticated";
+import { getCurrentUserName } from "../../../../../auth/isAuthenticated";
 
-const DropdownItemList = ({ items }) => {
+const DropdownItemList = (props) => {
   const [dropdown, setDropdown] = useState(false);
-  const [loggedUser, setLoggedUser] = useState(getCurrentUser());
   let ref = useRef();
 
   useEffect(() => {
@@ -22,13 +21,9 @@ const DropdownItemList = ({ items }) => {
     };
   }, [dropdown]);
 
-  useEffect(() => {
-    setLoggedUser(getCurrentUser);
-  }, [isAuthenticated()])
-
   const showLoggedUser = (name) => {
-    if(name === "User" && Object.keys(loggedUser).length !== 0) {
-      return ''
+    if (props.loggedUser && name === "User") {
+      return getCurrentUserName();
     } else {
       return name
     }
@@ -36,7 +31,7 @@ const DropdownItemList = ({ items }) => {
 
   return (
     <li className="user-item-list" ref={ref}>
-      {items.submenu ? (
+      {props.items.submenu ? (
         <div>
           <button
             type="button"
@@ -44,12 +39,12 @@ const DropdownItemList = ({ items }) => {
             aria-expanded={dropdown ? "true" : "false"}
             onClick={() => setDropdown((prev) => !prev)}
           >
-            {showLoggedUser(items.title)}{' '}
+            {showLoggedUser(props.items.title)}{' '}
           </button>
-          <Dropdown submenus={items.submenu} dropdown={dropdown} />
+          <Dropdown submenus={props.items.submenu} dropdown={dropdown} loggedUser={props.loggedUser} />
         </div>
       ) : (
-        <a href={items.url}>{items.title}</a>
+        <a href={props.items.url}>{props.items.title}</a>
       )}
     </li>
   );

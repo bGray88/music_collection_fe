@@ -10,13 +10,16 @@ export const userIndexApi = async () => {
   await axios
     .get("/api/v1/users", { headers: headers })
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
     })
     .catch((error) => console.log(error));
 }
 
 export const userCreateApi = async (creds, setCreate, setLoading) => {
   setLoading(true);
+  const headers = {
+    'Content-Type': 'application/json'
+  }
   await axios
     .post("/api/v1/register", {
       user: {
@@ -25,7 +28,9 @@ export const userCreateApi = async (creds, setCreate, setLoading) => {
         email: creds.email,
         password: creds.password,
         password_confirmation: creds.password_confirmation
-    }})
+      },
+      headers: headers
+    })
     .then((res) => {
       setCreate(res.data);
       setLoading(false);
@@ -38,22 +43,29 @@ export const userCreateApi = async (creds, setCreate, setLoading) => {
 
 export const userLoginApi = async (creds, setUserData, setLoading) => {
   setLoading(true);
+  const headers = {
+    'Content-Type': 'application/json'
+  }
   await axios
     .post("/api/v1/login", {
       login: {
         email: creds.email,
         password: creds.password
-    }})
+      },
+      headers: headers
+    })
     .then((res) => {
-      setLoading(false);
       setUserData(res);
+      setLoading(false);
       console.log(res.data);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error);
+      setLoading(false);
+    });
 }
 
 export const userLogoutApi = async (setLoading) => {
-  console.log(getAccessToken());
   setLoading(true);
   const headers = {
     'Content-Type': 'application/json',
@@ -63,7 +75,8 @@ export const userLogoutApi = async (setLoading) => {
     .delete("/api/v1/logout", { headers: headers })
     .then((res) => {
       setLoading(false);
-      console.log(res.data);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      setLoading(false);
+    });
 }

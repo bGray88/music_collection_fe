@@ -6,11 +6,11 @@ import Loading from '../../../components/ui/loading/loading';
 import Message from '../../../components/ui/message/message';
 import { userLoginApi } from '../../../api/users/usersApi';
 import { Authenticate } from '../../../auth/authenticate';
-import { getCurrentUser, isAuthenticated } from '../../../auth/isAuthenticated';
+import { getCurrentUser } from '../../../auth/isAuthenticated';
 
 import './userLogin.css'
 
-const UserLogin = () => {
+const UserLogin = (props) => {
   const [email, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
@@ -18,7 +18,6 @@ const UserLogin = () => {
   const [loginData, setLoginData] = useState({});
   const [userData, setUserData] = useState({});
   const [isLoading, setLoading] = useState(false);
-  const [loggedUser, setLoggedUser] = useState(getCurrentUser());
   const navigate = useNavigate();
 
   const emailChangeHandler = (event) => {
@@ -30,21 +29,18 @@ const UserLogin = () => {
 
   useEffect(() => {
     if (userData.headers) {
-      setLoggedUser(getCurrentUser);
-
-      if(userData.headers) {
-        setToken({
-          access_token: userData.headers["x-auth-token"],
-          expires: new Date(userData.headers["x-auth-expire"])
-        });
-      }
+      setToken({
+        access_token: userData.headers["x-auth-token"],
+        expires: new Date(userData.headers["x-auth-expire"])
+      });
       const auth = Authenticate(token);
 
       setUserEmail('');
       setPassword('');
 
       if(auth.success) {
-        Cookies.set("user", userData.data.user.data[0]);
+        props.setLoggedUser(getCurrentUser());
+        Cookies.set("user", userData.data.user.data[0].id);
         Cookies.set("user_name", `${userData.data.user.data[0].attributes.first_name} ${userData.data.user.data[0].attributes.last_name}`);
         navigate('/dashboard')
       } else {
@@ -52,9 +48,9 @@ const UserLogin = () => {
         navigate('/signin')
       }
     }
-  }, [userData])
+  }, [userData, navigate, props, token])
 
-  const submitHandler = async (event) => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
     setLoginData({
@@ -62,30 +58,39 @@ const UserLogin = () => {
       password: password
     });
 
-    await userLoginApi(loginData, setUserData, setLoading);
+    userLoginApi(loginData, setUserData, setLoading);
   };
 
-  return(
-    <div className="user-login">
-      {loginMessage}
-      <h1>Please Log In</h1>
-      <form className='user-login_form' onSubmit={submitHandler}>
-        <label>Email</label>
-        <div>
-          <input type="text" value={email} onChange={emailChangeHandler} />
-        </div>
-        <label>Password</label>
-        <div>
-          <input type="password" value={password} onChange={passwordChangeHandler}/>
-        </div>
-        <div>
-        <button type="submit"
-          className="btn btn-success"
-        >Submit</button>
-        </div>
-      </form>
-    </div>
-  )
+  if (isLoading) {
+    return (
+      <div className='create-loading'>
+        <h2>Processing...</h2>
+        <Loading />
+      </div>
+    )
+  } else {
+    return(
+      <div className="user-login">
+        {loginMessage}
+        <h1>Please Log In</h1>
+        <form className='user-login_form' onSubmit={submitHandler}>
+          <label>Email</label>
+          <div>
+            <input type="text" value={email} onChange={emailChangeHandler} />
+          </div>
+          <label>Password</label>
+          <div>
+            <input type="password" value={password} onChange={passwordChangeHandler}/>
+          </div>
+          <div>
+          <button type="submit"
+            className="btn btn-success"
+          >Submit</button>
+          </div>
+        </form>
+      </div>
+    )
+  }
 }
 
 export default UserLogin;
