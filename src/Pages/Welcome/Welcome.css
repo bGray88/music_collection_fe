@@ -1,8 +1,9 @@
-.welcome-page {
+.welcome-container {
   display: flex;
   flex: 3;
   flex-direction: column;
   align-items: center;
+  max-height: 43.5rem;
 }
 
 .top-heading {

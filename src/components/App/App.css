@@ -1,5 +1,5 @@
-.app {
-  text-align: center;
+.app div:not(.router-outer, .navbar.app-navbar, .album-item__image) {
+  margin: 5px 5px 5px 5px;
 }
 
 .router-outer {
@@ -8,12 +8,15 @@
 }
 
 .content-container {
+  flex: 5 0 0;
   display: flex;
+  justify-content: center;
 }
 
 .top-suggestions-container {
-  padding: auto;
-  margin: 20px 20px 20px 20px;
+  display: flex;
+  flex: 1 0 0;
+  padding: 20px;
 }
 
 @media screen and (max-width: 1000px) {

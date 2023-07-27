@@ -9,10 +9,12 @@ const AlbumItem = (props) => {
     <li>
       <Card className='album-item'>
         <input className="album-item_checkbox" type="checkbox" />
+        <div className='album-item__image'>
+          <img src={props.image} alt={props.image} height={80} />
+        </div>
         <div className='album-item__description'>
           <h2 className="album-item__title">{props.title}</h2>
           <div className='album-item__description-sub'>
-            <img src={props.image} alt={props.image} height={40} />
             <h3>{props.release_year}</h3>
             <h3>{props.genre}</h3>
           </div>
