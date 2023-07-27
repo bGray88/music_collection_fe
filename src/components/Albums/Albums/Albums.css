@@ -5,3 +5,8 @@
   width: 50rem;
   max-width: 95%;
 }
+
+.card.albums {
+  height: 40%;
+  overflow-y: scroll;
+}

@@ -52,13 +52,29 @@ const VerticalCarousel = ({
     }
   };
 
-	return (
+  if (data.length === 0) {
+    return (
+      <Card className="carousel">
+        <div className="carousel-wrapper">
+          <div className="content">
+            <div className="slides">
+              <div className="carousel-inner">
+                <h2 className="album-list__fallback">Found No Albums</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Card>
+    )
+  }
+  return (
     <Card className="carousel">
       <div className="carousel-wrapper">
         <div className="content">
           <img
             src={data[activeIndex].content.image}
             alt={data[activeIndex].content.introline}
+            height={300}
           />
           <p>{data[activeIndex].content.copy}</p>
         </div>
@@ -68,6 +84,13 @@ const VerticalCarousel = ({
           </div>
           <div className="slides">
             <div className="carousel-inner">
+              <button
+                type="button"
+                className="carousel-button prev"
+                onClick={() => handleClick('prev')}
+              >
+                <img src={Prev} alt={Prev} height={25} />
+              </button>
               {data.map((item, i) => (
                 <button
                   type="button"
@@ -86,24 +109,17 @@ const VerticalCarousel = ({
               ))}
               <button
                 type="button"
-                className="carousel-button prev"
-                onClick={() => handleClick('prev')}
+                className="carousel-button next"
+                onClick={() => handleClick('next')}
               >
-                <img src={Prev} alt={Prev} height={25} />
+                <img src={Next} alt={Next} height={25} />
               </button>
             </div>   
           </div>
         </div>
-        <button
-          type="button"
-          className="carousel-button next"
-          onClick={() => handleClick('next')}
-        >
-          <img src={Next} alt={Next} height={25} />
-        </button>
       </div>
     </Card>
-	);
+  );
 }
 
 VerticalCarousel.propTypes = {

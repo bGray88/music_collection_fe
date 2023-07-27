@@ -1,7 +1,7 @@
 .album-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 0.5rem;
   margin: 1rem 0;
   background-color: #4b4b4b;
@@ -23,23 +23,25 @@
   color: rgb(175, 175, 175);
 }
 
+.album-item__image {
+  margin-left: 2rem;
+}
+
 .album-item__description {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: .5rem;
-  flex: 240;
+  justify-content: flex-start;
 }
 
 .album-item__description-sub {
   display: flex;
   flex-direction: column;
   gap: 0rem;
-  flex: 240;
 }
 
 input.album-item_checkbox {
-  flex: 10;
   color: rgb(83, 83, 83);
   width: 30px;
   display: block;
@@ -58,7 +60,6 @@ input.album-item_checkbox {
 
 .album-item_remove-Button {
   display: flex;
-  flex: 1;
   color: black;
   opacity: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
