@@ -11,51 +11,48 @@ import {
   NavLogoContainer,
   NavBtnsContainer
 } from './NavbarElements';
-import UserItemMenu from './dropdownItems/dropdownItemMenu/dropdownItemMenu'
+import DropdownItemMenu from './dropdownItems/dropdownItemMenu/dropdownItemMenu'
 
 import logo from '../../../assets/images/navbar/logoRecordBanner.png'
-import { getCurrentUser, isAuthenticated } from "../../../auth/isAuthenticated";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const classes = 'navbar ' + props.className;
   const [currentNavUser, setCurrentUser] = useState('');
   const [currentNavSignUp, setCurrentSignUp] = useState('');
   const [currentNavSignIn, setCurrentSignIn] = useState('');
-  const [loggedUser, setLoggedUser] = useState(getCurrentUser());
 
   useEffect(() => {
-    setLoggedUser(getCurrentUser);
-  }, [isAuthenticated()])
-
-  useEffect(() => {
-    if (!loggedUser) {
-      setCurrentUser(<UserItemMenu />);
+    if (!props.loggedUser) {
+      setCurrentUser(<DropdownItemMenu loggedUser={props.loggedUser} />);
       setCurrentSignUp(<NavLink to='/sign-up'>Sign Up</NavLink>);
       setCurrentSignIn(<NavBtnLink to='/signin' >Sign In</NavBtnLink>)
     } else {
-      setCurrentUser(<UserItemMenu />);
+      setCurrentUser(<DropdownItemMenu loggedUser={props.loggedUser} />);
       setCurrentSignUp('');
       setCurrentSignIn(<NavBtnLink to='/signout' >Sign Out</NavBtnLink>)
     }
-  }, [loggedUser])
+  }, [props.loggedUser])
 
   return (
-    <Nav>
-      <NavLogoContainer>
-        <NavLogo to="/">
-          <img src={logo} alt={logo} height={40} />
-        </NavLogo>
-        {currentNavUser}
-      </NavLogoContainer>
-      <Bars />
-      <NavBtnsContainer>
-        <NavMenu>
-          {currentNavSignUp}
-        </NavMenu>
-        <NavBtn>
-          {currentNavSignIn}
-        </NavBtn>
-      </NavBtnsContainer>
-    </Nav>
+    <div className={classes}>{props.children}
+      <Nav>
+        <NavLogoContainer>
+          <NavLogo to="/">
+            <img src={logo} alt={logo} height={40} />
+          </NavLogo>
+          {currentNavUser}
+        </NavLogoContainer>
+        <Bars />
+        <NavBtnsContainer>
+          <NavMenu>
+            {currentNavSignUp}
+          </NavMenu>
+          <NavBtn>
+            {currentNavSignIn}
+          </NavBtn>
+        </NavBtnsContainer>
+      </Nav>
+    </div>
   );
 };
 

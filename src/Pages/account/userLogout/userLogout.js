@@ -7,24 +7,33 @@ import { userLogoutApi } from '../../../api/users/usersApi';
 import './userLogout.css'
 import { getAccessToken } from '../../../auth/isAuthenticated';
 
-const UserLogout = () => {
+const UserLogout = (props) => {
   const [isLoading, setLoading] = useState(true);
-  const [currentDisplay, setCurrentDisplay] = useState(<Loading />);
   const navigate = useNavigate();
 
   useEffect(() => {
     userLogoutApi(setLoading, getAccessToken());
+    props.setLoggedUser('');
 
     Cookies.remove("access_token");
     Cookies.remove('user');
     Cookies.remove('user_name');
 
     navigate('/');
-  }, [])
+  }, [props, navigate])
 
-  return (
-    <div>{currentDisplay}</div>
-  )
+  if (isLoading) {
+    return (
+      <div className='create-loading'>
+        <h2>Processing...</h2>
+        <Loading />
+      </div>
+    )
+  } else {
+    return(
+      <div></div>
+    )
+  }
 }
 
 export default UserLogout;

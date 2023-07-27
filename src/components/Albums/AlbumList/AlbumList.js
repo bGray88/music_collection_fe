@@ -17,6 +17,7 @@ const AlbumList = (props) => {
           title={album.attributes.title}
           release_year={album.attributes.release_year}
           genre={album.attributes.genre}
+          image={album.attributes.image}
         />
       }) }
     </ul>
