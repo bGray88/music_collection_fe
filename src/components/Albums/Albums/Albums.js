@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './albums.css'
 
 import Card from '../../ui/card/card'
-import { albumSearchIndexApi } from "../../../api/albums/albumsApi";
+import { albumOwnedIndexApi } from "../../../api/albums/albumsApi";
 import AlbumList from '../albumList/albumList'
 import Loading from "../../ui/loading/loading";
 
@@ -11,7 +11,7 @@ const Albums = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    albumSearchIndexApi(setAlbums, "Led Zeppilin", setLoading);
+    albumOwnedIndexApi(setAlbums, setLoading);
   }, [])
 
   if (isLoading) {

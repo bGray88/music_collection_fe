@@ -1,4 +1,4 @@
-.app div:not(.router-outer, .navbar.app-navbar, .album-item__image) {
+.app div:not(.router-outer, .navbar.app-navbar, .footer.app-footer, .album-item__image) {
   margin: 5px 5px 5px 5px;
 }
 

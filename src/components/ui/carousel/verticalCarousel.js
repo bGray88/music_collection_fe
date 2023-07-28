@@ -76,45 +76,49 @@ const VerticalCarousel = ({
             alt={data[activeIndex].content.introline}
             height={300}
           />
-          <p>{data[activeIndex].content.copy}</p>
+          <a href={`https://open.spotify.com/album/${data[activeIndex].id}`}>Spotify</a>
+        </div>
+        <div className="leading-text">
+          <p>{leadingText}</p>
         </div>
         <div className="carousel">
-          <div className="leading-text">
-            <p>{leadingText}</p>
-          </div>
           <div className="slides">
-            <div className="carousel-inner">
+            <button
+              type="button"
+              className="carousel-button prev"
+              onClick={() => handleClick('prev')}
+            >
+              <img src={Prev} alt={Prev} height={25} />
+            </button>
+            <button
+              type="button"
+              className="carousel-button next"
+              onClick={() => handleClick('next')}
+            >
+              <img src={Next} alt={Next} height={25} />
+            </button>
+          </div>
+          <div className="carousel-inner">
+            {data.map((item, i) => (
               <button
                 type="button"
-                className="carousel-button prev"
-                onClick={() => handleClick('prev')}
+                onClick={() => setActiveIndex(i)}
+                className={classNames('carousel-item', {
+                  active: activeIndex === i,
+                  visible: Math.abs(determinePlacement(i)) <= visibleStyleThreshold,
+                })}
+                key={item.id}
+                style={{ transform: `translateY(${determinePlacement(i)}px)` }}
               >
-                <img src={Prev} alt={Prev} height={25} />
+              <div className='carousel-item-intro'>
+                {
+                  (item.introline.split(' ').length > 2)
+                    ? item.introline.split(' ').slice(0, 2).join(' ').concat('...')
+                    : item.introline.split(' ').slice(0, 2).join(' ')
+                }
+              </div>
               </button>
-              {data.map((item, i) => (
-                <button
-                  type="button"
-                  onClick={() => setActiveIndex(i)}
-                  className={classNames('carousel-item', {
-                    active: activeIndex === i,
-                    visible: Math.abs(determinePlacement(i)) <= visibleStyleThreshold,
-                  })}
-                  key={item.id}
-                  style={{ transform: `translateY(${determinePlacement(i)}px)` }}
-                >
-                <div className='carousel-item-intro'>
-                  {item.introline}
-                </div>
-                </button>
-              ))}
-              <button
-                type="button"
-                className="carousel-button next"
-                onClick={() => handleClick('next')}
-              >
-                <img src={Next} alt={Next} height={25} />
-              </button>
-            </div>   
+            ))}
           </div>
         </div>
       </div>
