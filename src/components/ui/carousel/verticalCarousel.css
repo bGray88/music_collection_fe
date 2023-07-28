@@ -1,6 +1,6 @@
 :root {
   --white: #fff;
-  --orange: #f36c00;
+  --dark: #3d3d73;
 }
 
 button {
@@ -13,7 +13,7 @@ button {
 }
 
 .carousel-wrapper {
-  background: var(--orange);
+  background: var(--dark);
   display: flex;
   flex: 0 0 1px;
   align-items: center;
@@ -56,14 +56,22 @@ button {
 
 .leading-text {
   display: flex;
+  justify-content: center;
   height: 100%;
   width: 100%;
   margin-left: 10%;
   margin-right: 10%;
+  text-decoration: underline;
+  word-break: break-all;
 }
 
 .slides {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  max-height: 20rem;
+  height: 18rem;
 }
 
 .content {
@@ -85,6 +93,7 @@ button {
 }
 
 .carousel {
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -93,11 +102,7 @@ button {
 
 .carousel-inner {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  max-height: 20rem;
-  height: 18rem;
+  flex-wrap: wrap;
 }
 
 .carousel-inner::before,
@@ -105,7 +110,7 @@ button {
   content: '';
   z-index: 1;
   position: relative;
-  height: 10px;
+  height: 44px;
   pointer-events: none;
 }
 

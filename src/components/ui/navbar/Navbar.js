@@ -10,7 +10,7 @@ import {
   NavBtnLink,
   NavLogoContainer,
   NavBtnsContainer
-} from './NavbarElements';
+} from './navbarElements';
 import DropdownItemMenu from './dropdownItems/dropdownItemMenu/dropdownItemMenu'
 
 import logo from '../../../assets/images/navbar/logoRecordBanner.png'

@@ -1,10 +1,22 @@
-.album-item {
+.album-item__left {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0.5rem;
   margin: 1rem 0;
-  background-color: #4b4b4b;
+  background-color: #3d3d73;
+}
+
+.album-item__right {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  background-color: #3d3d73;
+}
+
+.album-item {
+  display: flex;
+  background-color: #3d3d73;
 }
 
 .album-item h2 {
@@ -24,38 +36,31 @@
 }
 
 .album-item__image {
+
   margin-left: 2rem;
 }
 
 .album-item__description {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: .5rem;
   justify-content: flex-start;
+  gap: .5rem;
 }
 
 .album-item__description-sub {
   display: flex;
-  flex-direction: column;
   gap: 0rem;
 }
 
-input.album-item_checkbox {
-  color: rgb(83, 83, 83);
-  width: 30px;
-  display: block;
-  height: 30px;
-  position: relative;
-  margin: 1rem 0;
-}
-
-.album-item_checkbox:checked + .album-item__title {
-  color: #87bb5f;
-}
-
-.album-item_checkbox + .album-item__title {
-  color: black;
+.album-item_add-button {
+  background: #3d3d73;
+  padding: 10px 22px;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: large;
+  text-decoration: none;
 }
 
 .album-item_remove-Button {
