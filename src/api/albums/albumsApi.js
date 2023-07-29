@@ -11,7 +11,6 @@ export const albumOwnedIndexApi = async (setAlbums, setLoading) => {
       },
       headers: headers })
     .then((res) => {
-      console.log(res.data.data);
       setAlbums(res.data.data);
     })
     .catch((error) => {

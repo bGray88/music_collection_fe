@@ -12,6 +12,8 @@ const DropdownItemMenu = (props) => {
   useEffect(() => {
     if (props.loggedUser) {
       setItems(userItems)
+    } else {
+      setItems(guestItems)
     }
   }, [props.loggedUser])
 

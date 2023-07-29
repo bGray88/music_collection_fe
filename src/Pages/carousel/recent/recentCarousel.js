@@ -12,8 +12,6 @@ const RecentCarousel = () => {
       albumRecentIndexApi(setAlbums, setLoading);
   }, [])
 
-  console.log(albums);
-
   if (isLoading) {
     return (
       <div className='album-recent-carousel__loading'>

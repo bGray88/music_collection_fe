@@ -8,10 +8,6 @@ import { getCurrentUser } from "../../auth/isAuthenticated";
 function App() {
   const [loggedUser, setLoggedUser] = useState(getCurrentUser());
 
-  useEffect(() => {
-    setLoggedUser(getCurrentUser());
-  }, [loggedUser]);
-
   return (
     <div className="app">
       <Switch loggedUser={loggedUser} setLoggedUser={setLoggedUser}/>

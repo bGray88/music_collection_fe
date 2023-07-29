@@ -11,7 +11,7 @@ import Welcome from '../pages/welcome/welcome';
 import About from '../pages/support/about'
 import Contact from '../pages/support/contact'
 import Dashboard from '../pages/dashboard/dashboard';
-import Account from '../pages/account/profile/profile';
+import Profile from '../pages/account/profile/profile';
 import Card from "../components/ui/card/card";
 import SuggestedCarousel from "../pages/carousel/suggested/suggestedCarousel";
 import RecentCarousel from "../pages/carousel/recent/recentCarousel";
@@ -34,7 +34,7 @@ const Switch = (props) => {
               <Route path='/about' element={<About loggedUser={props.loggedUser} />} />
               <Route path="/contact" element={<Contact loggedUser={props.loggedUser} />} />
               <Route path='/dashboard' element={!props.loggedUser ? redirect : <Dashboard loggedUser={props.loggedUser} />} />
-              <Route path="/account" element={!props.loggedUser ? redirect : <Account loggedUser={props.loggedUser} />} />
+              <Route path="/profile" element={!props.loggedUser ? redirect : <Profile loggedUser={props.loggedUser} />} />
             </Routes>
           </Card >
           <RecentCarousel />
