@@ -6,9 +6,9 @@ import Loading from '../../../components/ui/loading/loading';
 import Message from '../../../components/ui/message/message';
 import { userLoginApi } from '../../../api/users/usersApi';
 import { Authenticate } from '../../../auth/authenticate';
-import { getCurrentUser } from '../../../auth/isAuthenticated';
 
 import './userLogin.css'
+import { getCurrentUser, isAuthenticated } from '../../../auth/isAuthenticated';
 
 const UserLogin = (props) => {
   const [email, setUserEmail] = useState('');
@@ -27,6 +27,19 @@ const UserLogin = (props) => {
     setPassword(event.target.value);
   }
 
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    setLoginData({
+      email:    email,
+      password: password
+    });
+  };
+
+  useEffect(() => {
+    userLoginApi(loginData, setUserData, setLoading);
+  }, [loginData]);
+
   useEffect(() => {
     if (userData.headers) {
       setToken({
@@ -38,28 +51,22 @@ const UserLogin = (props) => {
       setUserEmail('');
       setPassword('');
 
-      if(auth.success) {
-        props.setLoggedUser(getCurrentUser());
-        Cookies.set("user", userData.data.user.data[0].id);
+      if(isAuthenticated()) {
+        Cookies.set("user_email", userData.data.user.data[0].attributes.email);
         Cookies.set("user_name", `${userData.data.user.data[0].attributes.first_name} ${userData.data.user.data[0].attributes.last_name}`);
-        navigate('/dashboard')
+        Cookies.set("user", JSON.stringify(userData.data.user.data[0]));
+        props.setLoggedUser(JSON.parse(getCurrentUser()));
+        setLoginMessage(<Message message={"Credentials Verified"} />);
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 2000);
       } else {
-        setLoginMessage(<Message message={`${auth.error}`} />);
-        navigate('/signin')
+        setTimeout(() => {
+          navigate('/signin');
+        }, 2000);
       }
     }
-  }, [userData, navigate, props, token])
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-
-    setLoginData({
-      email:    email,
-      password: password
-    });
-
-    userLoginApi(loginData, setUserData, setLoading);
-  };
+  }, [userData, token])
 
   if (isLoading) {
     return (

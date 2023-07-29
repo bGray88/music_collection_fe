@@ -2,17 +2,22 @@ import axios from "axios";
 
 import { getAccessToken } from '../../auth/isAuthenticated';
 
-export const userIndexApi = async () => {
+export const userIndexApi = async (setUserAlbums, setLoading) => {
+  setLoading(true);
   const headers = {
     'Content-Type': 'application/json',
     'Authorization': getAccessToken()
   }
-  await axios
-    .get("/api/v1/users", { headers: headers })
-    .then((res) => {
-      // console.log(res.data);
+  axios
+    .get("/api/v1/albums", {
+      headers: headers
     })
-    .catch((error) => console.log(error));
+    .then((res) => {
+      setUserAlbums(res.data.data);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
 }
 
 export const userCreateApi = async (creds, setCreate, setLoading) => {
@@ -33,10 +38,11 @@ export const userCreateApi = async (creds, setCreate, setLoading) => {
     })
     .then((res) => {
       setCreate(res.data);
-      setLoading(false);
     })
     .catch((error) => {
-      setCreate(error.response.data);
+      console.log(error);
+    })
+    .finally(() => {
       setLoading(false);
     });
 }
@@ -56,11 +62,12 @@ export const userLoginApi = async (creds, setUserData, setLoading) => {
     })
     .then((res) => {
       setUserData(res);
-      setLoading(false);
       console.log(res.data);
     })
     .catch((error) => {
       console.log(error);
+    })
+    .finally(() => {
       setLoading(false);
     });
 }
@@ -73,10 +80,10 @@ export const userLogoutApi = async (setLoading) => {
   }
   await axios
     .delete("/api/v1/logout", { headers: headers })
-    .then((res) => {
-      setLoading(false);
-    })
     .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
       setLoading(false);
     });
 }

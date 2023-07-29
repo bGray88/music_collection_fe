@@ -1,40 +1,41 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Cookies from 'js-cookie'
 
+import Loading from "../../components/ui/loading/loading";
 import Message from "../../components/ui/message/message";
 import AlbumList from '../../components/albums/albumList/albumList'
 import Card from "../../components/ui/card/card";
 
 import './dashboard.css'
+import { albumOwnedIndexApi } from "../../api/albums/albumsApi";
 
 const Dashboard = ({id, setCurrentUser, setUserName}) => {
     const [user_albums, setUserAlbums] = useState([]);
     const [loginMessage, setLoginMessage] = useState('');
-
-    const loadAlbums = () => {
-      axios
-        .get("/api/v1/albums")
-        // get user albums based on ID
-        .then((res) => {
-          setUserAlbums(res.data.data);
-        })
-        .catch((error) => console.log(error));
-    }
-  
+    const [isLoading, setLoading] = useState(true);
+    
     useEffect(() => {
-      loadAlbums();
+      albumOwnedIndexApi(setUserAlbums, setLoading);
       setLoginMessage(<Message message={`Welcome ${Cookies.get("user_name")}`} />);
     }, [])
 
-    return (
-      <div className="dashboard-main">
-        {loginMessage}
-        <Card className='albums'>
-          <AlbumList items={user_albums} />
-        </Card>
-      </div>
-    );
+    if (isLoading) {
+      return (
+        <div className='create-loading'>
+          <h2>Processing...</h2>
+          <Loading />
+        </div>
+      );
+    } else {
+      return (
+        <div className="dashboard-main">
+          {loginMessage}
+          <Card className='albums'>
+            <AlbumList items={user_albums} />
+          </Card>
+        </div>
+      );
+    }
 }
 
 export default Dashboard

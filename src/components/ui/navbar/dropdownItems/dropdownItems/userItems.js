@@ -28,8 +28,8 @@ export const userItems = [
         url: '/dashboard',
       },
       {
-        title: 'Account',
-        url: '/account',
+        title: 'Profile',
+        url: '/profile',
       }
     ]
   },

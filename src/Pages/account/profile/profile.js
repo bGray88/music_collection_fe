@@ -1,14 +1,27 @@
-// import React, { useState, useEffect } from "react";
+import React from "react";
 
 import './profile.css'
 
-// import Card from "../../../Window/Card/Card";
-// import Loading from "../Loading/Loading";
+const Profile = (loggedUser) => {
+  const userData  = JSON.parse(loggedUser.loggedUser)
+  const firstName = userData.attributes.first_name;
+  const lastName  = userData.attributes.last_name;
+  const email     = userData.attributes.email;
 
-const Profile = ({id, setCurrentUser, setUserName}) => {
-    return (
-        ''
-    )
+  console.log(firstName);
+
+  return (
+    <div>
+      <div className="profile_top-heading">
+        <h2>{`${firstName}'s Profile`}</h2>
+      </div>
+      <div>
+        <h3>{`First Name: ${firstName}`}</h3>
+        <h3>{`Last Name: ${lastName}`}</h3>
+        <h3>{`First Name: ${email}`}</h3>
+      </div>
+    </div>
+  )
 }
 
 export default Profile

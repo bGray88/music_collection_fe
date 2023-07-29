@@ -58,18 +58,14 @@ const UserCreate = () => {
   useEffect(() => {
     if (createResult !== {} && createResult.hasOwnProperty('success')) {
       setCreateMessage(createResult.success);
-      setLoading(true);
       setTimeout(() => {
         navigate('/signin');
-        setLoading(false);
-      }, 3000);
+      }, 2000);
     } else if (createResult !== {} && createResult.hasOwnProperty('errors')) {
       setCreateMessage(createResult.errors);
-      setLoading(true);
       setTimeout(() => {
         navigate('/sign-up');
-        setLoading(false);
-      }, 3000);
+      }, 2000);
     }
   }, [createResult, navigate])
 
