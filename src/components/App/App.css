@@ -11,6 +11,8 @@
   flex: 5 0 0;
   display: flex;
   justify-content: center;
+  height: 45.2rem;
+  overflow-y: scroll;
 }
 
 .top-suggestions-container {

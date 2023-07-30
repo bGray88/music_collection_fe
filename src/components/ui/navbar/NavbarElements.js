@@ -27,6 +27,42 @@ export const NavLogo = styled(Link)`
   text-decoration: none;
 `;
 
+export const NavSearchContainer = styled.nav`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+`;
+
+export const NavSearchInput = styled.input`
+  height: 2rem;
+  font-size: 25px;
+  width: 75%;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+  padding-left: 1rem;
+  cursor: pointer;
+  &:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+  }
+`;
+
+export const NavSearchBtn = styled.button`
+  border-radius: 4px;
+  padding: 0.5rem 22px;
+  color: #000000;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+`;
+
 export const NavBtnsContainer = styled.nav`
   background: #222222;
   height: 40px;
@@ -67,6 +103,7 @@ export const NavMenu = styled.div`
   display: flex;
   align-items: center;
   margin-right: 24px;
+  flex-shrink: 0;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -76,6 +113,7 @@ export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
   margin-right: 24px;
+  flex-shrink: 0;
   @media screen and (max-width: 768px) {
     display: none;
   }

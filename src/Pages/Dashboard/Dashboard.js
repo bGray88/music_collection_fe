@@ -9,7 +9,7 @@ import Card from "../../components/ui/card/card";
 import './dashboard.css'
 import { albumOwnedIndexApi } from "../../api/albums/albumsApi";
 
-const Dashboard = ({id, setCurrentUser, setUserName}) => {
+const Dashboard = () => {
     const [user_albums, setUserAlbums] = useState([]);
     const [loginMessage, setLoginMessage] = useState('');
     const [isLoading, setLoading] = useState(true);
