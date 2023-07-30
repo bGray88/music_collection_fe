@@ -1,6 +1,10 @@
 .album-list {
   list-style: none;
-  padding: 0;
+  padding: 1rem;
+}
+
+.card.albums {
+  background-color: #222222;
 }
 
 .album-list__fallback {

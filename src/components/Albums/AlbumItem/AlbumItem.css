@@ -1,3 +1,10 @@
+.album-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: #3d3d73;
+  margin: 2rem auto;
+}
+
 .album-item__left {
   display: flex;
   align-items: center;
@@ -10,12 +17,7 @@
   display: flex;
   align-items: center;
   padding: 0.5rem;
-  margin: 1rem 0;
-  background-color: #3d3d73;
-}
-
-.album-item {
-  display: flex;
+  margin: 0 1rem;
   background-color: #3d3d73;
 }
 
@@ -36,7 +38,6 @@
 }
 
 .album-item__image {
-
   margin-left: 2rem;
 }
 
@@ -48,6 +49,7 @@
 
 .album-item__description-sub {
   display: flex;
+  justify-content: flex-end;
   gap: 0rem;
 }
 
