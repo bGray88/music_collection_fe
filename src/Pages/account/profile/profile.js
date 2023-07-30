@@ -13,12 +13,12 @@ const Profile = (loggedUser) => {
   return (
     <div>
       <div className="profile_top-heading">
-        <h2>{`${firstName}'s Profile`}</h2>
+        <h3>{`${firstName}'s Profile`}</h3>
       </div>
       <div>
-        <h3>{`First Name: ${firstName}`}</h3>
-        <h3>{`Last Name: ${lastName}`}</h3>
-        <h3>{`First Name: ${email}`}</h3>
+        <div>{`First Name: ${firstName}`}</div>
+        <div>{`Last Name: ${lastName}`}</div>
+        <div>{`First Name: ${email}`}</div>
       </div>
     </div>
   )
