@@ -1,7 +1,3 @@
-.app div:not(.router-outer, .navbar.app-navbar, .footer.app-footer, .album-item__image) {
-  margin: 5px 5px 5px 5px;
-}
-
 .router-outer {
   display: flex;
   flex-direction: column;
@@ -11,7 +7,8 @@
   flex: 5 0 0;
   display: flex;
   justify-content: center;
-  height: 45.2rem;
+  height: 42rem;
+  background-color: rgb(175, 175, 175);
   overflow-y: scroll;
 }
 
