@@ -111,10 +111,9 @@ const VerticalCarousel = ({
                 style={{ transform: `translateY(${determinePlacement(i)}px)` }}
               >
               <div className='carousel-item-intro'>
-                {
-                  (item.introline.split(' ').length > 2)
-                    ? item.introline.split(' ').slice(0, 2).join(' ').concat('...')
-                    : item.introline.split(' ').slice(0, 2).join(' ')
+                { (item.introline.length > 18)
+                  ? (item.introline.slice(0, 18).concat('...'))
+                  : (item.introline.slice(0, 21))
                 }
               </div>
               </button>

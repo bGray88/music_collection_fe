@@ -8,8 +8,6 @@ const Profile = (loggedUser) => {
   const lastName  = userData.attributes.last_name;
   const email     = userData.attributes.email;
 
-  console.log(firstName);
-
   return (
     <div>
       <div className="profile_top-heading">

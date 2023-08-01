@@ -105,9 +105,9 @@ const UserCreate = () => {
             <input type="password" value={passwordConfirm} onChange={passwordConfirmChangeHandler}/>
           </div>
           <div>
-            <button type="submit"
-              className="btn btn-success"
-            >Submit</button>
+            <button type="submit" className="btn btn-success_create">
+              Submit
+            </button>
           </div>
         </form>
       </div>

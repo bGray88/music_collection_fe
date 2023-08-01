@@ -9,7 +9,6 @@
   justify-content: center;
   height: 42rem;
   background-color: rgb(175, 175, 175);
-  overflow-y: scroll;
 }
 
 .top-suggestions-container {

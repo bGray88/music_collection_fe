@@ -4,14 +4,13 @@ import { getAccessToken } from '../../auth/isAuthenticated';
 
 export const userIndexApi = async (setUserAlbums, setLoading) => {
   setLoading(true);
+  const url = "/api/v1/users";
   const headers = {
     'Content-Type': 'application/json',
     'Authorization': getAccessToken()
   }
   axios
-    .get("/api/v1/albums", {
-      headers: headers
-    })
+    .get(url, { headers: headers })
     .then((res) => {
       setUserAlbums(res.data.data);
     })
@@ -22,20 +21,21 @@ export const userIndexApi = async (setUserAlbums, setLoading) => {
 
 export const userCreateApi = async (creds, setCreate, setLoading) => {
   setLoading(true);
+  const url = "/api/v1/register";
+  const data = {
+    "user": {
+      "first_name": creds.first_name,
+      "last_name": creds.last_name,
+      "email": creds.email,
+      "password": creds.password,
+      "password_confirmation": creds.password_confirmation
+    }
+  }
   const headers = {
     'Content-Type': 'application/json'
   }
   await axios
-    .post("/api/v1/register", {
-      user: {
-        first_name: creds.first_name,
-        last_name: creds.last_name,
-        email: creds.email,
-        password: creds.password,
-        password_confirmation: creds.password_confirmation
-      },
-      headers: headers
-    })
+    .post(url, data, { headers: headers })
     .then((res) => {
       setCreate(res.data);
     })
@@ -49,20 +49,20 @@ export const userCreateApi = async (creds, setCreate, setLoading) => {
 
 export const userLoginApi = async (creds, setUserData, setLoading) => {
   setLoading(true);
+  const url = "/api/v1/login";
+  const data = {
+    "login": {
+      "email": creds.email,
+      "password": creds.password
+    }
+  }
   const headers = {
     'Content-Type': 'application/json'
   }
   await axios
-    .post("/api/v1/login", {
-      login: {
-        email: creds.email,
-        password: creds.password
-      },
-      headers: headers
-    })
+    .post(url, data, { headers: headers })
     .then((res) => {
       setUserData(res);
-      console.log(res.data);
     })
     .catch((error) => {
       console.log(error);
@@ -74,12 +74,12 @@ export const userLoginApi = async (creds, setUserData, setLoading) => {
 
 export const userLogoutApi = async (setLoading) => {
   setLoading(true);
+  const url = "/api/v1/logout";
   const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': getAccessToken()
+    'Content-Type': 'application/json'
   }
   await axios
-    .delete("/api/v1/logout", { headers: headers })
+    .delete(url, { headers: headers })
     .catch((error) => {
       console.log(error);
     })

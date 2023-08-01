@@ -13,7 +13,9 @@ const AlbumItem = (props) => {
             <img src={props.image} alt={props.image} height={80} />
           </div>
           <div className='album-item__description'>
-            <h2 className="album-item__title">{props.title}</h2>
+            <a className="album-item__title" href={`/album/${props.id}`}>
+              {props.title}
+            </a>
           </div>
         </div>
         <div className='album-item__right'>
