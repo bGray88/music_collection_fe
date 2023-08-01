@@ -12,6 +12,7 @@ import About from '../pages/support/about'
 import Contact from '../pages/support/contact'
 import Dashboard from '../pages/dashboard/dashboard';
 import Profile from '../pages/account/profile/profile';
+import Album from "../pages/album/album";
 import Search from '../pages/search/search'
 import Card from "../components/ui/card/card";
 import SuggestedCarousel from "../pages/carousel/suggested/suggestedCarousel";
@@ -37,6 +38,7 @@ const Switch = (props) => {
               <Route path='/dashboard' element={!props.loggedUser ? redirect : <Dashboard loggedUser={props.loggedUser} />} />
               <Route path="/profile" element={!props.loggedUser ? redirect : <Profile loggedUser={props.loggedUser} />} />
               <Route path="/search" element={<Search loggedUser={props.loggedUser} />} />
+              <Route path={`/album/:id`} element={<Album loggedUser={props.loggedUser} />}/>
             </Routes>
           </Card >
           <RecentCarousel />

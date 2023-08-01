@@ -7,7 +7,7 @@ import AlbumList from '../../components/albums/albumList/albumList'
 import Card from "../../components/ui/card/card";
 
 import './dashboard.css'
-import { albumOwnedIndexApi } from "../../api/albums/albumsApi";
+import { userAlbumOwnedIndexApi } from "../../api/userAlbums/userAlbumsApi";
 
 const Dashboard = () => {
     const [user_albums, setUserAlbums] = useState([]);
@@ -15,7 +15,7 @@ const Dashboard = () => {
     const [isLoading, setLoading] = useState(true);
     
     useEffect(() => {
-      albumOwnedIndexApi(setUserAlbums, setLoading);
+      userAlbumOwnedIndexApi(setUserAlbums, setLoading);
       setLoginMessage(<Message message={`Welcome ${Cookies.get("user_name")}`} />);
     }, [])
 

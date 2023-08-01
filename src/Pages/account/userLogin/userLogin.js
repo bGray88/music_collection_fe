@@ -91,7 +91,7 @@ const UserLogin = (props) => {
           </div>
           <div>
           <button type="submit"
-            className="btn btn-success"
+            className="btn btn-success_login"
           >Submit</button>
           </div>
         </form>

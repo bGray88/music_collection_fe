@@ -14,6 +14,7 @@ const AlbumList = (props) => {
       { props.items.map ((album) => {
         return <AlbumItem
           key={album.id}
+          id={album.id}
           title={album.attributes.title}
           release_year={album.attributes.release_year}
           genre={album.attributes.genre}

@@ -36,7 +36,7 @@ export const NavSearchContainer = styled.nav`
 
 export const NavSearchInput = styled.input`
   height: 2rem;
-  font-size: 25px;
+  font-size: 15px;
   width: 75%;
   border: 2px solid #aaa;
   border-radius: 4px;
