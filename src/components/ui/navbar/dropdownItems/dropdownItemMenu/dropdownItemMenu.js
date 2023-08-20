@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-import { userItems } from '../dropdownItems/userItems';
-import { guestItems } from '../dropdownItems/guestItems';
-import DropdownItemList from '../dropdownItemList/dropdownItemList';
+import { userItems } from '../DropdownItems/UserItems';
+import { guestItems } from '../DropdownItems/GuestItems';
+import DropdownItemList from '../DropdownItemList/DropdownItemList';
 
-import './dropdownItemMenu.css'
+import './DropdownItemMenu.css'
 
 const DropdownItemMenu = (props) => {
   const [items, setItems] = useState(guestItems);

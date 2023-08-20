@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
-import Dropdown from '../../../dropdown/dropdown';
-import { getCurrentUserName } from "../../../../../auth/isAuthenticated";
+import Dropdown from '../../../Dropdown/Dropdown';
+import { getCurrentUserName } from "../../../../../Auth/IsAuthenticated";
 
 const DropdownItemList = (props) => {
   const [dropdown, setDropdown] = useState(false);

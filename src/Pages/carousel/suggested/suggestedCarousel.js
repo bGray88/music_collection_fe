@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import Loading from '../../../components/ui/loading/loading'
-import AlbumCarousel from "../../../components/albums/albumCarousel/albumCarousel";
-import { albumSuggestIndexApi } from "../../../api/albums/albumsApi";
+import Card from '../../../Components/UI/Card/Card'
+import Loading from '../../../Components/UI/Loading/Loading'
+import AlbumCarousel from "../../../Components/Albums/AlbumCarousel/AlbumCarousel";
+import { albumSuggestIndexApi } from "../../../API/Albums/AlbumsApi";
 
 const SuggestedCarousel = () => {
   const [albums, setAlbums] = useState([]);
@@ -21,7 +22,9 @@ const SuggestedCarousel = () => {
     )
   } else {
     return (
-      albums !== [] ? <AlbumCarousel albums={albums} leadingText={"Recommended"}/> : <></>
+      <Card className="carousel-suggested">
+        {albums !== [] ? <AlbumCarousel albums={albums} leadingText={"Recommended"}/> : <></>}
+      </Card>
     )
   }
 }

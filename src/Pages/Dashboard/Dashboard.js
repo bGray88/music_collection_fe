@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Cookies from 'js-cookie'
 
-import Loading from "../../components/ui/loading/loading";
-import Message from "../../components/ui/message/message";
-import AlbumList from '../../components/albums/albumList/albumList'
-import Card from "../../components/ui/card/card";
+import Loading from "../../Components/UI/Loading/Loading";
+import Message from "../../Components/UI/Message/Message";
+import AlbumList from '../../Components/Albums/AlbumList/AlbumList'
+import Card from "../../Components/UI/Card/Card";
 
-import './dashboard.css'
-import { userAlbumOwnedIndexApi } from "../../api/userAlbums/userAlbumsApi";
+import './Dashboard.css'
+import { userAlbumOwnedIndexApi } from "../../API/UserAlbums/UserAlbumsApi";
 
 const Dashboard = () => {
     const [user_albums, setUserAlbums] = useState([]);

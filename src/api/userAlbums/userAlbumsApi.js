@@ -1,8 +1,8 @@
 import axios from "axios";
 
-import { getAccessToken } from '../../auth/isAuthenticated';
+import { getAccessToken } from '../../Auth/IsAuthenticated';
 
-export const userAlbumAddToUser = async (setUserAlbum, albumId, setLoading) => {
+export const userAlbumAddApi = async (setAddUserAlbum, albumId, setLoading) => {
   setLoading(true);
   const url = "/api/v1/user_albums"
   const data = {
@@ -16,7 +16,7 @@ export const userAlbumAddToUser = async (setUserAlbum, albumId, setLoading) => {
     .post(url, data, { headers: headers })
     .then((res) => {
       console.log(res.data);
-      setUserAlbum("added")
+      setAddUserAlbum("added")
     })
     .catch((error) => {
       console.log(error);
@@ -26,7 +26,7 @@ export const userAlbumAddToUser = async (setUserAlbum, albumId, setLoading) => {
     });
 }
 
-export const userAlbumRemoveFromUser = async (setUserAlbum, albumId, setLoading) => {
+export const userAlbumRemoveApi = async (setAddUserAlbum, albumId, setLoading) => {
   setLoading(true);
   const url = "/api/v1/user_albums"
   const data = {
@@ -42,7 +42,7 @@ export const userAlbumRemoveFromUser = async (setUserAlbum, albumId, setLoading)
     .delete(url, data, { headers: headers })
     .then((res) => {
       console.log(res.data);
-      setUserAlbum("removed")
+      setAddUserAlbum("removed")
     })
     .catch((error) => {
       console.log(error);

@@ -1,6 +1,6 @@
 import React from "react";
 
-import VerticalCarousel from "../../ui/carousel/verticalCarousel"
+import VerticalCarousel from "../../UI/Carousel/VerticalCarousel"
 
 const AlbumCarousel = (props) => {
   return (

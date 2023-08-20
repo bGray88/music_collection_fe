@@ -1,22 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
-import Navbar from '../components/ui/navBar/navBar';
-import Footer from '../components/ui/navBar/footer';
-import Signup from '../pages/account/userCreate/userCreate';
-import Login from '../pages/account/userLogin/userLogin';
-import Logout from '../pages/account/userLogout/userLogout';
+import Navbar from '../Components/UI/Navbar/Navbar';
+import Footer from '../Components/UI/Navbar/Footer';
+import Signup from '../Pages/Account/UserCreate/UserCreate';
+import Login from '../Pages/Account/UserLogin/UserLogin';
+import Logout from '../Pages/Account/UserLogout/UserLogout';
 
-import Welcome from '../pages/welcome/welcome';
-import About from '../pages/support/about'
-import Contact from '../pages/support/contact'
-import Dashboard from '../pages/dashboard/dashboard';
-import Profile from '../pages/account/profile/profile';
-import Album from "../pages/album/album";
-import Search from '../pages/search/search'
-import Card from "../components/ui/card/card";
-import SuggestedCarousel from "../pages/carousel/suggested/suggestedCarousel";
-import RecentCarousel from "../pages/carousel/recent/recentCarousel";
+import Welcome from '../Pages/Welcome/Welcome';
+import About from '../Pages/Support/About'
+import Contact from '../Pages/Support/Contact'
+import Dashboard from '../Pages/Dashboard/Dashboard';
+import Profile from '../Pages/Account/Profile/Profile';
+import Album from "../Pages/Album/Album";
+import Search from '../Pages/Search/Search'
+import Card from "../Components/UI/Card/Card";
+import SuggestedCarousel from "../Pages/Carousel/Suggested/SuggestedCarousel";
+import RecentCarousel from "../Pages/Carousel/Recent/RecentCarousel";
 
 const Switch = (props) => {
   const redirect = <Navigate to='/signin' replace={true} />

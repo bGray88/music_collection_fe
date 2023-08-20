@@ -1,6 +1,6 @@
 import React from "react";
 
-import './profile.css'
+import './Profile.css'
 
 const Profile = (loggedUser) => {
   const userData  = JSON.parse(loggedUser.loggedUser)

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-import { getAccessToken } from '../../auth/isAuthenticated';
+import { getAccessToken } from '../../Auth/IsAuthenticated';
 
-export const albumAdd = async (album, setLoading) => {
+export const albumAddApi = async (setAddAlbum, album, setLoading) => {
   setLoading(true);
   const url = "/api/v1/albums"
   const data = {
@@ -12,7 +12,7 @@ export const albumAdd = async (album, setLoading) => {
       "release_year": album.attributes.release_year,
       "image":        album.attributes.image,
       "api_id":       album.attributes.api_id,
-      "artist_id":       album.attributes.artist_id
+      "artist_id":    album.attributes.artist_id
     }
   }
   const headers = {
@@ -22,6 +22,7 @@ export const albumAdd = async (album, setLoading) => {
   await axios
     .post(url, data, { headers: headers })
     .then((res) => {
+      setAddAlbum(true);
       console.log(res.data);
     })
     .catch((error) => {
@@ -46,6 +47,7 @@ export const albumGetByIdIndexApi = async (setAlbum, albumId, setLoading) => {
   await axios
     .get(url, data, { headers: headers })
     .then((res) => {
+      console.log(res.data.data[0]);
       setAlbum(res.data.data[0]);
     })
     .catch((error) => {

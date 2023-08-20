@@ -4,6 +4,7 @@ import ReactLoading from "react-loading";
 const Loading = () => {
     return (
         <div className="loading-main">
+          <div className="loading-content">
             {/* <ReactLoading type="balls" color="#0000FF"
                 height={100} width={50} /> */}
             <ReactLoading type="bars" color="#0000FF"
@@ -24,6 +25,7 @@ const Loading = () => {
                 height={100}
                 width={50} 
             />*/}
+          </div>
         </div>
     );
 }

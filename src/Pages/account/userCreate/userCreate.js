@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { userCreateApi } from '../../../api/users/usersApi';
-import Message from '../../../components/ui/message/message';
-import Loading from '../../../components/ui/loading/loading';
+import { userCreateApi } from '../../../API/Users/UsersApi';
+import Message from '../../../Components/UI/Message/Message';
+import Loading from '../../../Components/UI/Loading/Loading';
 
-import './userCreate.css'
+import './UserCreate.css'
 
 const UserCreate = () => {
   const [firstName, setFirstName] = useState('');

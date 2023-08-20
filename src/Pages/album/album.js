@@ -1,36 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
 
-import { userAlbumAddToUser, userAlbumRemoveFromUser } from '../../api/userAlbums/userAlbumsApi';
-import { artistAdd, artistGetByIdIndexApi } from '../../api/artists/artistsApi';
-import { albumGetByIdIndexApi, albumAdd } from '../../api/albums/albumsApi';
-import Message from '../../components/ui/message/message'
-import Card from '../../components/ui/card/card';
+import { userAlbumAddApi, userAlbumRemoveApi } from '../../API/UserAlbums/UserAlbumsApi';
+import { artistAddApi, artistGetByIdIndexApi } from '../../API/Artists/ArtistsApi';
+import { albumGetByIdIndexApi, albumAddApi } from '../../API/Albums/AlbumsApi';
+import Message from '../../Components/UI/Message/Message'
+import Card from '../../Components/UI/Card/Card';
 import Loading from 'react-loading';
 
-import './album.css'
+import './Album.css'
 
 const Album = () => {
   const [album, setAlbum] = useState('');
   const [artist, setArtist] = useState('');
+  const [artistName, setArtistName] = useState('');
+  const [update, setUpdate] = useState('');
+  const [addAlbum, setAddAlbum] = useState('');
+  const [addArtist, setAddArtist] = useState('');
   const [userAlbum, setUserAlbum] = useState('');
-  const [newMessage, setMessage] = useState();
+  const [newMessage, setMessage] = useState('');
   const [isLoading, setLoading] = useState(true);
 
   const params = useParams();
 
+  const handleAddClick = () => {
+    setUpdate('Add')
+  }
+
+  const handleRemoveClick = () => {
+    setUpdate('Remove')
+  }
+
   useEffect(() => {
     albumGetByIdIndexApi(setAlbum, params.id, setLoading)
+  }, [])
+
+  useEffect(() => {
     if (album !== '') {
       artistGetByIdIndexApi(setArtist, album.attributes.artist_id, setLoading)
     }
-  }, [params.id, album.id])
+  }, [album])
 
-  const handleAddClick = () => {
-    artistAdd(artist, setLoading);
-    albumAdd(album, setLoading);
-    userAlbumAddToUser(setUserAlbum, album.id, setLoading)
-  }
+  useEffect(() => {
+    if (artist !== '') {
+      setArtistName(artist.attributes.name)
+    }
+  }, [artist])
+
+  useEffect(() => {
+    if (update === 'Add') {
+      albumAddApi(setAddAlbum, album, setLoading)
+    }
+  }, [addArtist])
+
+  useEffect(() => {
+    if (update === 'Add') {
+      userAlbumAddApi(setUserAlbum, album.id, setLoading)
+    }
+  }, [addAlbum])
+
+  useEffect(() => {
+      if (update === 'Add') {
+        artistAddApi(setAddArtist, artist, setLoading)
+      } else if (update === 'Remove') {
+        userAlbumRemoveApi(setUserAlbum, params.id, setLoading)
+      }
+  }, [update])
 
   useEffect(() => {
     if (userAlbum === "added") {
@@ -39,10 +74,6 @@ const Album = () => {
       setMessage(<Message className="message-prompt" message={"Album Removed from Collection"} />);
     }
   }, [userAlbum])
-
-  const handleRemoveClick = () => {
-    userAlbumRemoveFromUser(setUserAlbum, params.id, setLoading)
-  }
 
   if (album === '') {
     return <h2>Found No Album</h2>
@@ -65,23 +96,27 @@ const Album = () => {
           <div className='album-info_description'>
             <h2>{album.attributes.title}</h2>
             <h3>{album.attributes.release_year}</h3>
-            <h3>{album.attributes.genres}</h3>
+            <h3>{"Pop/Rock"}</h3>
+            <h3>{artistName}</h3>
           </div>
         </Card>
-        <button
-          className='album-info_add-button'
-          type="button"
-          onClick={handleAddClick}
-        >
-          Add
-        </button>
-        <button
-          className='album-info_remove-button'
-          type="button"
-          onClick={handleRemoveClick}
-        >
-          Remove
-        </button>
+        { 
+          album.attributes.owned === false ?
+            <button
+              className='album-info_add-button'
+              type="button"
+              onClick={handleAddClick}
+            >
+              Add
+            </button>
+          : <button
+              className='album-info_remove-button'
+              type="button"
+              onClick={handleRemoveClick}
+            >
+              Remove
+            </button>
+        }
       </Card>
     );
   }
