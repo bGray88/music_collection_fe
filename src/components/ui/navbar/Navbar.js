@@ -13,11 +13,11 @@ import {
   NavLogoContainer,
   NavBtnsContainer,
   NavSearchContainer
-} from './navBarElements';
-import NavBarSearch from "./navBarSearch";
-import DropdownItemMenu from './dropdownItems/dropdownItemMenu/dropdownItemMenu'
+} from './NavbarElements';
+import NavBarSearch from "./NavbarSearch";
+import DropdownItemMenu from './DropdownItems/DropdownItemMenu/DropdownItemMenu'
 
-import logo from '../../../assets/images/navbar/logoRecordBanner.png'
+import logo from '../../../Assets/Images/Navbar/logoRecordBanner.png'
 
 const Navbar = (props) => {
   const classes = 'navbar ' + props.className;

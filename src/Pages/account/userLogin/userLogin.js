@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'
 
-import Loading from '../../../components/ui/loading/loading';
-import Message from '../../../components/ui/message/message';
-import { userLoginApi } from '../../../api/users/usersApi';
-import { Authenticate } from '../../../auth/authenticate';
+import Loading from '../../../Components/UI/Loading/Loading';
+import Message from '../../../Components/UI/Message/Message';
+import { userLoginApi } from '../../../API/Users/UsersApi';
+import { Authenticate } from '../../../Auth/Authenticate';
 
-import './userLogin.css'
-import { getCurrentUser, isAuthenticated } from '../../../auth/isAuthenticated';
+import './UserLogin.css'
+import { getCurrentUser, isAuthenticated } from '../../../Auth/IsAuthenticated';
 
 const UserLogin = (props) => {
+  const { setLoggedUser } = props;
+  const { loggedUser } = props;
   const [email, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
@@ -55,7 +57,7 @@ const UserLogin = (props) => {
         Cookies.set("user_email", userData.data.user.data[0].attributes.email);
         Cookies.set("user_name", `${userData.data.user.data[0].attributes.first_name} ${userData.data.user.data[0].attributes.last_name}`);
         Cookies.set("user", JSON.stringify(userData.data.user.data[0]));
-        props.setLoggedUser(JSON.parse(getCurrentUser()));
+        setLoggedUser(JSON.parse(getCurrentUser()));
         setLoginMessage(<Message message={"Credentials Verified"} />);
         setTimeout(() => {
           navigate('/dashboard');

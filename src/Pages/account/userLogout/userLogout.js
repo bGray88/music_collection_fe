@@ -2,25 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'
 
-import Loading from '../../../components/ui/loading/loading';
-import { userLogoutApi } from '../../../api/users/usersApi';
-import './userLogout.css'
-import { getAccessToken } from '../../../auth/isAuthenticated';
+import Loading from '../../../Components/UI/Loading/Loading';
+import { userLogoutApi } from '../../../API/Users/UsersApi';
+import { getAccessToken } from '../../../Auth/IsAuthenticated';
+
+import './UserLogout.css'
 
 const UserLogout = (props) => {
+  const { setLoggedUser } = props;
+  const { loggedUser } = props;
   const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     userLogoutApi(setLoading, getAccessToken());
-    props.setLoggedUser('');
+    setLoggedUser('');
 
     Cookies.remove("access_token");
     Cookies.remove('user');
     Cookies.remove('user_name');
 
     navigate('/');
-  }, [props, navigate])
+  }, [loggedUser, navigate])
 
   if (isLoading) {
     return (

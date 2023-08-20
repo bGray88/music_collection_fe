@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import Loading from '../../../components/ui/loading/loading'
-import AlbumCarousel from "../../../components/albums/albumCarousel/albumCarousel";
-import { albumRecentIndexApi } from "../../../api/albums/albumsApi";
+import Card from '../../../Components/UI/Card/Card'
+import Loading from '../../../Components/UI/Loading/Loading'
+import AlbumCarousel from "../../../Components/Albums/AlbumCarousel/AlbumCarousel";
+import { albumRecentIndexApi } from "../../../API/Albums/AlbumsApi";
 
 const RecentCarousel = () => {
   const [albums, setAlbums] = useState([]);
@@ -21,7 +22,9 @@ const RecentCarousel = () => {
     )
   } else {
     return (
-      albums !== [] ? <AlbumCarousel albums={albums} leadingText={"Recently Released"}/> : <></>
+      <Card className="carousel-recent">
+        {albums !== [] ? <AlbumCarousel albums={albums} leadingText={"Recently Released"}/> : <></>}
+      </Card>
     )
   }
 }

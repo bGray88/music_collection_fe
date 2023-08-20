@@ -1,8 +1,8 @@
 import axios from "axios";
 
-import { getAccessToken } from '../../auth/isAuthenticated';
+import { getAccessToken } from '../../Auth/IsAuthenticated';
 
-export const artistAdd = async (artist, setLoading) => {
+export const artistAddApi = async (setAddArtist, artist, setLoading) => {
   setLoading(true);
   const url = "/api/v1/artists"
   const data = {
@@ -19,6 +19,7 @@ export const artistAdd = async (artist, setLoading) => {
   await axios
     .post(url, data, { headers: headers })
     .then((res) => {
+      setAddArtist(true);
       console.log(res.data);
     })
     .catch((error) => {

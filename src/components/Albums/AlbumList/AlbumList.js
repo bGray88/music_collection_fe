@@ -1,8 +1,8 @@
 import React from "react";
 
-import AlbumItem from "../albumItem/albumItem";
+import AlbumItem from "../AlbumItem/AlbumItem";
 
-import './albumList.css'
+import './AlbumList.css'
 
 const AlbumList = (props) => {
   if (props.items.length === 0) {

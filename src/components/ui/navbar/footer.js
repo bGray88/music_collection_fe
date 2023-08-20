@@ -6,7 +6,7 @@ import {
   NavMenu,
   NavBtn,
   NavBtnsContainer
-} from './navBarElements';
+} from './NavbarElements';
 
 const Footer = (props) => {
   const classes = 'footer ' + props.className;

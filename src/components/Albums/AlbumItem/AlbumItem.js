@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Card from '../../ui/card/card';
+import Card from '../../UI/Card/Card';
 
-import './albumItem.css'
+import './AlbumItem.css'
 
 const AlbumItem = (props) => {
   return (

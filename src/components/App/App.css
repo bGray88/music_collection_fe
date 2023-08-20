@@ -11,12 +11,6 @@
   background-color: rgb(175, 175, 175);
 }
 
-.top-suggestions-container {
-  display: flex;
-  flex: 1 0 0;
-  padding: 20px;
-}
-
 @media screen and (max-width: 1000px) {
   .app {
     width:100%

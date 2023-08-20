@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import "./app.css";
+import "./App.css";
 
-import Switch from '../../routes/switch'
-import { getCurrentUser } from "../../auth/isAuthenticated";
+import Switch from '../../Routes/Switch'
+import { getCurrentUser } from "../../Auth/IsAuthenticated";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState(getCurrentUser());

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import './albums.css'
 
-import Card from '../../ui/card/card'
-import { albumOwnedIndexApi } from "../../../api/albums/albumsApi";
-import AlbumList from '../albumList/albumList'
-import Loading from "../../ui/loading/loading";
+import Card from '../../UI/Card/Card'
+import { albumOwnedIndexApi } from "../../../API/albums/albumsApi";
+import AlbumList from '../AlbumList/albumList'
+import Loading from "../../UI/Loading/Loading";
 
 const Albums = () => {
   const [albums, setAlbums] = useState([]);

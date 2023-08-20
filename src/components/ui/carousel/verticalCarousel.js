@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Card from '../card/card';
-import Next from '../../../assets/images/carousel/chevronDown.png';
-import Prev from '../../../assets/images/carousel/chevronUp.png';
-import './verticalCarousel.css';
+import Next from '../../../Assets/Images/Carousel/chevronDown.png';
+import Prev from '../../../Assets/Images/Carousel/chevronUp.png';
+import './VerticalCarousel.css';
 
 const VerticalCarousel = ({
 	data,
@@ -54,74 +53,70 @@ const VerticalCarousel = ({
 
   if (data.length === 0) {
     return (
-      <Card className="carousel">
-        <div className="carousel-wrapper">
-          <div className="content">
-            <div className="slides">
-              <div className="carousel-inner">
-                <h2 className="album-list__fallback">Found No Albums</h2>
-              </div>
+      <div className="carousel-wrapper">
+        <div className="content">
+          <div className="slides">
+            <div className="carousel-inner">
+              <h2 className="album-list__fallback">Found No Albums</h2>
             </div>
           </div>
         </div>
-      </Card>
+      </div>
     )
   }
   return (
-    <Card className="carousel">
-      <div className="carousel-wrapper">
-        <div className="content">
-          <img
-            src={data[activeIndex].content.image}
-            alt={data[activeIndex].content.introline}
-            height={300}
-          />
-          <a href={`https://open.spotify.com/album/${data[activeIndex].id}`}>Spotify</a>
+    <div className="carousel-wrapper">
+      <div className="content">
+        <img
+          src={data[activeIndex].content.image}
+          alt={data[activeIndex].content.introline}
+          height={300}
+        />
+        <a href={`https://open.spotify.com/album/${data[activeIndex].id}`}>Spotify</a>
+      </div>
+      <div className="leading-text">
+        <p>{leadingText}</p>
+      </div>
+      <div className="carousel">
+        <div className="slides">
+          <button
+            type="button"
+            className="carousel-button prev"
+            onClick={() => handleClick('prev')}
+          >
+            <img src={Prev} alt={Prev} height={25} />
+          </button>
+          <button
+            type="button"
+            className="carousel-button next"
+            onClick={() => handleClick('next')}
+          >
+            <img src={Next} alt={Next} height={25} />
+          </button>
         </div>
-        <div className="leading-text">
-          <p>{leadingText}</p>
-        </div>
-        <div className="carousel">
-          <div className="slides">
+        <div className="carousel-inner">
+          {data.map((item, i) => (
             <button
               type="button"
-              className="carousel-button prev"
-              onClick={() => handleClick('prev')}
+              onClick={() => setActiveIndex(i)}
+              className={classNames('carousel-item', {
+                active: activeIndex === i,
+                visible: Math.abs(determinePlacement(i)) <= visibleStyleThreshold,
+              })}
+              key={item.id}
+              style={{ transform: `translateY(${determinePlacement(i)}px)` }}
             >
-              <img src={Prev} alt={Prev} height={25} />
+            <div className='carousel-item-intro'>
+              { (item.introline.length > 18)
+                ? (item.introline.slice(0, 18).concat('...'))
+                : (item.introline.slice(0, 21))
+              }
+            </div>
             </button>
-            <button
-              type="button"
-              className="carousel-button next"
-              onClick={() => handleClick('next')}
-            >
-              <img src={Next} alt={Next} height={25} />
-            </button>
-          </div>
-          <div className="carousel-inner">
-            {data.map((item, i) => (
-              <button
-                type="button"
-                onClick={() => setActiveIndex(i)}
-                className={classNames('carousel-item', {
-                  active: activeIndex === i,
-                  visible: Math.abs(determinePlacement(i)) <= visibleStyleThreshold,
-                })}
-                key={item.id}
-                style={{ transform: `translateY(${determinePlacement(i)}px)` }}
-              >
-              <div className='carousel-item-intro'>
-                { (item.introline.length > 18)
-                  ? (item.introline.slice(0, 18).concat('...'))
-                  : (item.introline.slice(0, 21))
-                }
-              </div>
-              </button>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
-    </Card>
+    </div>
   );
 }
 

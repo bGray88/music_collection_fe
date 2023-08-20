@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { getAccessToken } from '../../auth/isAuthenticated';
+import { getAccessToken } from '../../Auth/IsAuthenticated';
 
 export const userIndexApi = async (setUserAlbums, setLoading) => {
   setLoading(true);

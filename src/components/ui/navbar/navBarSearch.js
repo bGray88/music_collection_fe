@@ -1,5 +1,5 @@
 import React from "react";
-import { NavSearchInput } from "./navBarElements";
+import { NavSearchInput } from "./NavbarElements";
 
 const NavBarSearch = (props) => {
 
